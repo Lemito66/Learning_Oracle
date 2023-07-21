@@ -22,3 +22,14 @@ BEGIN
     INSERT INTO employees (first_name, last_name, email, salary) VALUES ('Juan' || i, 'Perez' || i, 'lemito' || i || '@gmail.com', 1000);
   END LOOP;
 END;
+
+
+-- Multiplicando el salario por 5
+
+select salary*5 from employees;
+
+-- Salarios que sean distintos de * 5
+select salary from employees where salary != 5000;
+
+-- Concatenar nombre y apellido
+select first_name || ' ' || last_name  as "Nombre y Apellido" from employees;

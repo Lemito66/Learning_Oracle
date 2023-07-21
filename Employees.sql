@@ -13,10 +13,12 @@ CREATE TABLE `employees` (
   `salary` integer
 );
 
-
-
-
-
 -- Insertar valores
+insert into employees (first_name, last_name, email, salary) values ('Juan', 'Perez', 'lemito66@gmail.com', 1000);
 
-INSERT INTO employees (employee_id, first_name, last_name, email, salary) VALUES (nextval('sec_employees'), 'John', 'Doe', 'lemito66@gmail.com', 1000);
+-- Creame 50 datos de prueba para la tabla employees 
+BEGIN
+  FOR i IN 1..50 LOOP
+    INSERT INTO employees (first_name, last_name, email, salary) VALUES ('Juan' || i, 'Perez' || i, 'lemito' || i || '@gmail.com', 1000);
+  END LOOP;
+END;

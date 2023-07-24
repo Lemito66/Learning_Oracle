@@ -22,5 +22,3 @@ select last_name, salary from employees where salary between 100 and 12000 order
 -- Solo desplegar la información del Apellido Perez1 y Perez2
 
 select * from employees where last_name in ('Perez1', 'Perez2')
-
--- Usando like

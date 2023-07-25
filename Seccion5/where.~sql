@@ -1,0 +1,13 @@
+-- Where
+
+select * from employees where department_id = 50
+
+/* 
+= Igual
+> Mayor que
+< Menor que
+>= Mayor o igual que
+<= Menor o igual que
+<> Distinto
+
+*/

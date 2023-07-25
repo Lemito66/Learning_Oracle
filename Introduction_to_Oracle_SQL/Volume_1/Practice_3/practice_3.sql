@@ -15,3 +15,9 @@ When condition3 Then result3
 Else result4
 End
 
+select * from dual
+
+
+SELECT ADD_MONTHS(TO_DATE('31/10/2007','DD/MM/YYYY'),4) as Dias FROM DUAL;
+
+select current_date from dual

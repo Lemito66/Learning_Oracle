@@ -1,0 +1,19 @@
+/* En la tabla LOCATIONS, averiguar las ciudades que son de Canada o
+Estados unidos (Country_id=CA o US) y que la longitud del nombre de la
+calle sea superior a 15. 
+
+*/
+
+select * from locations
+
+select * from locations where (country_id = 'CA' or country_id = 'US') and (length(street_address) >15)
+
+
+/*
+Muestra la longitud del nombre y el salario anual (por 14) para los
+empleados cuyo apellido contenga el car�cter 'b' despu�s de la 3�
+posición.
+*/
+
+select first_name, length(first_name) Longitud , salary * 14 as "Salario anual" from employees 
+where last_name like '___b%' 

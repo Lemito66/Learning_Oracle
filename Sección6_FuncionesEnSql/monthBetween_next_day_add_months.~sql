@@ -1,0 +1,9 @@
+-- Months_between(d1,d2)
+
+select trunc(months_between(sysdate, hire_date), 0) from employees
+
+-- add_months (d1, n) añade la suma de los meses
+
+select sysdate, add_months(sysdate,3) from dual
+
+-- Next_day(fecha, string) El string tiene un dia de la semana 

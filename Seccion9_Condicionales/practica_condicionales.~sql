@@ -46,18 +46,62 @@ HAVING COUNT(*) > 1;
 select * from cpt where cpt.cpt = '00027705'
 select * from cpt where cpt.cpt = '-'
 
+
+
+
+select * from cpt where cpt.cpt = '-'
+select * from cpt where cpt.cpt = '00058555'
+
+
+
 -- Me indica que hay 2 registros con el mismo cpt
 SELECT cpt.cpt, COUNT(*) AS cantidad_duplicados
 FROM cpt
 GROUP BY cpt.cpt
 HAVING COUNT(*) > 1;
 
+select * from cpt where cpt.cpt = '00049000'
+
+delete from cpt where cpt_id = 9832
 
 
 
-    
+SELECT cpt.cpt, COUNT(*) AS cantidad_duplicados
+FROM cpt
+where cantidad_duplicados <>2
+GROUP BY cpt.cpt
+HAVING COUNT(*) > 1; 
 
 
-select * from cpt where cpt.cpt = '-'
+select * from cpt where cpt.cpt = '00058555'
 
-delete from cpt where cpt_id = 5230
+SELECT cpt.cpt, cpt.short_name, COUNT(*) AS cantidad_duplicados
+FROM cpt
+WHERE cpt.short_name = '-' AND cpt.cpt IN (
+    SELECT cpt.cpt
+    FROM cpt
+    GROUP BY cpt.cpt
+    HAVING COUNT(*) > 1
+)
+GROUP BY cpt.cpt, cpt.short_name;
+
+
+
+
+DELETE FROM cpt
+WHERE (cpt.cpt, cpt.short_name) IN (
+    SELECT cpt.cpt, cpt.short_name
+    FROM cpt
+    WHERE cpt.short_name = '-' AND cpt.cpt IN (
+        SELECT cpt.cpt
+        FROM cpt
+        GROUP BY cpt.cpt
+        HAVING COUNT(*) > 1
+    )
+);
+
+
+
+
+
+

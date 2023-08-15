@@ -60,9 +60,15 @@ FROM cpt
 GROUP BY cpt.cpt
 HAVING COUNT(*) > 1;
 
-select * from cpt where cpt.cpt = '00049000'
+select * from cpt where cpt.cpt = '00061711'
 
-delete from cpt where cpt_id = 9832
+
+select tabla.*, tabla.rowid from cpt tabla 
+
+update cpt 
+set cpt.description_cpt = 'ANASTOMOSIS, ARTERIAL, INTRACRANEAL-EXTRACRANEAL, POR EJEMPLO CEREBRAL MEDIA/CORTICAL' where cpt_id = 12240
+
+delete from cpt where cpt_id = 12241
 
 
 
@@ -73,7 +79,7 @@ GROUP BY cpt.cpt
 HAVING COUNT(*) > 1; 
 
 
-select * from cpt where cpt.cpt = '00058555'
+select * from cpt where cpt.cpt = '00064702'
 
 SELECT cpt.cpt, cpt.short_name, COUNT(*) AS cantidad_duplicados
 FROM cpt
@@ -100,7 +106,27 @@ WHERE (cpt.cpt, cpt.short_name) IN (
     )
 );
 
+select * from cpt
 
+
+update cpt 
+set cpt.short_name = upper(cpt.short_name)
+
+update cpt 
+set cpt.description_cpt = upper(cpt.description_cpt)
+
+UPDATE cpt
+SET cpt.description_cpt = REPLACE(cpt.description_cpt, 'Á', 'A');
+
+select * from cpt where description_cpt like '%Á%' OR description_cpt like '%É%'
+ OR description_cpt like '%Í%' OR description_cpt like '%Ó%' OR description_cpt like '%Ú%'
+
+UPDATE cpt
+SET short_name = RTRIM(short_name);
+
+
+
+delete from formularioterapiarespiratoria where id = 397
 
 
 

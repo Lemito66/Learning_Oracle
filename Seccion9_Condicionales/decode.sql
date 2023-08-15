@@ -4,6 +4,7 @@ select
     department_id
 from
     employees
+    
 select
     first_name,
     department_id,

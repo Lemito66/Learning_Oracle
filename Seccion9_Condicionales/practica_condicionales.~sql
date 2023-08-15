@@ -1,4 +1,4 @@
--- 1. Expresiones condicionales
+﻿-- 1. Expresiones condicionales
 /* � Visualizar los siguientes datos con CASE.
 o Si el departamento es 50 ponemos Transporte
 o Si el departamento es 90 ponemos Direcci�n
@@ -35,3 +35,29 @@ end Zonas
 select department_id, first_name,
 decode(department_id, 50, 'Transporte', 90, 'Direccion', 'Otro departamento') as "Departamento"
 from employees
+
+select * from cpt
+
+SELECT cpt.cpt, COUNT(*) AS cantidad_duplicados
+FROM cpt
+GROUP BY cpt.cpt
+HAVING COUNT(*) > 1;
+
+select * from cpt where cpt.cpt = '00027705'
+select * from cpt where cpt.cpt = '-'
+
+-- Me indica que hay 2 registros con el mismo cpt
+SELECT cpt.cpt, COUNT(*) AS cantidad_duplicados
+FROM cpt
+GROUP BY cpt.cpt
+HAVING COUNT(*) > 1;
+
+
+
+
+    
+
+
+select * from cpt where cpt.cpt = '-'
+
+delete from cpt where cpt_id = 5230

@@ -1,0 +1,3 @@
+select sum(salary), count(*), sum(salary)*12 as "Suma Anual" from employees 
+
+select sum(salary) from employees where department_id = 50

@@ -1,4 +1,4 @@
---Visualizar el nombre del pa�s y el nombre de la regi�n. (tablas COUNTRIES
+﻿--Visualizar el nombre del pa�s y el nombre de la regi�n. (tablas COUNTRIES
 --y REGIONS). Usar un natural join
 select
     country_name,
@@ -11,8 +11,8 @@ select
 from
     countries
     natural join regions
-    --Usando el ejemplo anterior visualizar tambi�n el nombre de la ciudad
-    --a�adiendo una nueva tabla (LOCATIONS)
+--Usando el ejemplo anterior visualizar tambi�n el nombre de la ciudad
+--a�adiendo una nueva tabla (LOCATIONS)
 select
     country_name,
     region_name,

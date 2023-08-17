@@ -1,0 +1,19 @@
+select
+    department_name,
+    first_name,
+    city
+from
+    employees
+    join departments on (
+        employees.department_id = departments.department_id
+    )
+    join locations on (departments.location_id = locations.location_id)
+    and salary > 5000
+/* where
+    salary > 5000 */
+
+
+select
+    *
+from
+    locations

@@ -39,10 +39,5 @@ having count(*) >10
 select department_id, to_char(hire_date, 'yyyy'), count(*) from employees
 group by department_id, to_char(hire_date, 'yyyy')
 
--- Mostrar los departament_id de los departamentos que tienen managers
---que tienen a cargo más de 5 empleados
-select distinct department_id, count(*) from employees 
-group by department_id, manager_id 
-having count(employee_id)> 5
 
 select * from employees

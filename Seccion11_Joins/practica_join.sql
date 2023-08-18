@@ -68,3 +68,32 @@ select job_title, avg(employees.salary), count(*)  from employees join jobs on (
 group by job_title, employees.salary
 having avg(employees.salary) > 7000
 order by salary asc
+
+-- • Mostrar el nombre de la región y el número de departamentos en cada una de las regiones
+
+select * from countries
+select * from locations
+select * from countries
+select * from regions
+select * from departments
+select * from employees
+
+SELECT REGION_NAME,COUNT(*) AS "NUM DEPAR"
+FROM REGIONS NATURAL JOIN COUNTRIES NATURAL JOIN LOCATIONS
+NATURAL JOIN DEPARTMENTS
+GROUP BY REGION_NAME;
+
+--Mostrar el nombre del empleado, el departamento y el país donde trabaja (debemos usar la cláusual using)
+
+select * from countries
+select * from locations
+select * from countries
+select * from regions
+select * from departments
+select * from employees
+
+select employees.first_name, departments.department_name, countries.country_name
+from employees 
+join departments using (department_id)
+join  locations using (location_id)
+join countries using (country_id)

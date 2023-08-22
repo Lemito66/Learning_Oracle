@@ -14,10 +14,10 @@ where
         from
             employees
     )
-    -- Estas subconsultas se pueden usar en cualquier parte
-    -- Where
-    -- Having
-    -- From
+-- Estas subconsultas se pueden usar en cualquier parte
+-- Where
+-- Having
+-- From
 select
     first_name,
     department_id
@@ -33,3 +33,10 @@ where
             first_name = 'Douglas'
             and last_name = 'Grant'
     )
+    
+    
+
+select avg(salary) from employees
+
+select first_name, last_name, salary from employees
+where salary > (select avg(salary) from employees)

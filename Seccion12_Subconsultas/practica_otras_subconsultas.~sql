@@ -1,0 +1,12 @@
+-- • Seleccionar el nombre, salario y departamento de los empleados que
+--ganen mas que cualquiera de los salarios máximos de los
+--departamentos 50, 60 y 70. Usar el operador ANY
+
+select employees.first_name, employees.salary, employees.department_id
+from employees 
+where salary > any (select max(salary) from employees group by department_id having department_id in (50,60,70))
+
+
+-- select max(salary) from employees where employees.department_id in (50,60,70)
+
+select max(salary) from employees group by department_id having department_id in (50,60,70)

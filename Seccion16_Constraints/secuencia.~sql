@@ -1,0 +1,3 @@
+-- Crear secuencia
+
+CREATE SEQUENCE seq_id increment by 1 start with 1 minvalue 1;

@@ -1,0 +1,24 @@
+-- Sintaxis del particionamiento 
+
+
+/* partition by range (columna, columna1)
+(
+    partition p1 values less than (valor1),
+    partition p2 values less than (valor2),
+    partition p3 values less than (valor3),
+    partition p4 values less than (maxvalue),
+) */
+
+
+create table "rango"(
+    codigo number(3) not null,
+    datos VARCHAR2(100) not null,
+)
+partition by range (codigo)
+(
+    partition p1 values less than (10),
+    partition p2 values less than (20),
+    partition p3 values less than (30),
+    partition p3 values less than (40),
+    --partition p4 values less than (maxvalue),
+);

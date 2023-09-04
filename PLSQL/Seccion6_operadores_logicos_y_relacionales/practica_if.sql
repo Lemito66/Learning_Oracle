@@ -1,0 +1,51 @@
+﻿/*
+� Debemos hacer un bloque PL/SQL an�nimo, donde declaramos una variable
+NUMBER y la ponemos alg�n valor.
+� Debe indicar si el n�mero es PAR o IMPAR. Es decir debemos usar IF..... ELSE
+para hacer el ejercicio
+� Como pista, recuerda que hay una funci�n en SQL denominada MOD, que
+permite averiguar el resto de una divisi�n.
+� Por ejemplo MOD(10,4) nos devuelve el resto de dividir 10 por 4.
+
+ */
+
+DECLARE
+    NUMERO NUMBER := 10;
+BEGIN
+    IF MOD(NUMERO, 2) = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('El numero es par');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('El numero es impar');
+    END IF;
+END;
+
+
+/*
+• Crear una variable CHAR(1) denominada TIPO_PRODUCTO.
+• Poner un valor entre "A" Y "E"
+• Visualizar el siguiente resultado según el tipo de producto
+o 'A' --> Electronica
+o 'B' --> Informática
+o 'C' --> Ropa
+o 'D' --> Música
+o 'E' --> Libros
+o Cualquier otro valor debe visualizar "El código es incorrecto 
+*/
+
+DECLARE
+    TIPO_PRODUCTO CHAR(1) := 'A';
+BEGIN
+    IF TIPO_PRODUCTO = 'A' THEN
+        DBMS_OUTPUT.PUT_LINE('Electrónica');
+    ELSIF TIPO_PRODUCTO = 'B' THEN
+        DBMS_OUTPUT.PUT_LINE('Informatica');
+    ELSIF TIPO_PRODUCTO = 'C' THEN
+        DBMS_OUTPUT.PUT_LINE('Ropa');
+    ELSIF TIPO_PRODUCTO = 'D' THEN
+        DBMS_OUTPUT.PUT_LINE('Musica');
+    ELSIF TIPO_PRODUCTO = 'E' THEN
+        DBMS_OUTPUT.PUT_LINE('Libros');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('El codigo es incorrecto');
+    END IF;
+END;

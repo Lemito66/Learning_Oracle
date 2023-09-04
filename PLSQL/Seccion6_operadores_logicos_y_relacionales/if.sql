@@ -1,0 +1,14 @@
+DECLARE
+    SALES NUMBER:= 40000;
+    BONUS NUMBER:=0;
+BEGIN
+    IF SALES > 40000 THEN
+        BONUS := 500;
+    ELSIF SALES > 2000 THEN
+        BONUS := 400;
+    ELSE
+        BONUS := 300;
+    END IF;
+    DBMS_OUTPUT.PUT_LINE('Bonus = '
+                         || BONUS);
+END;

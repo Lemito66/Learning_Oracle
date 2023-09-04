@@ -1,0 +1,6 @@
+declare 
+    usuario varchar2(40);
+BEGIN
+    usuario := user;
+    dbms_output.put_line(usuario);
+END;

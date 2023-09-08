@@ -6,8 +6,8 @@ CREATE OR REPLACE FUNCTION FUN_CONTROL_LINEA_INTRAVENOSA(
             RPAD(TLI.CD_REGISTRO_SECUENCIAL, 5)                         CD_REGISTRO_SECUENCIAL,
             RPAD(TO_CHAR(TLI.FECHA_INICIO, 'dd/mm/yyyy hh24:mi'), 18)   FECHA_INICIO,
             RPAD(TLI.TIPO, 20)                                          TIPO,
-            RPAD(TLI.LOCALIZACION, 29)                                  LOCALIZACION,
-            RPAD(TLI.CUIDADOS, 97)                                      CUIDADOS,
+            RPAD(TLI.LOCALIZACION, 30)                                  LOCALIZACION,
+            RPAD(TLI.CUIDADOS, 34)                                      CUIDADOS,
             --RPAD(TO_CHAR(TLI.FECHA_CURACION, 'dd/mm/yyyy hh24:mi'), 24) FECHA_CURACION
             TO_CHAR(TLI.FECHA_CURACION, 'dd/mm/yyyy hh24:mi')           FECHA_CURACION
         FROM

@@ -1,0 +1,16 @@
+-- Con continue podemos impedir que se ejecute el resto del programa y volvemos a la linea 1
+
+declare 
+    first_number number := 0;
+
+begin
+    LOOP
+        DBMS_OUTPUT.PUT_LINE('loop: '|| TO_CHAR(first_number));
+        first_number := first_number + 1;
+        IF first_number < 3 THEN
+            CONTINUE;
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('n�mero déspues del continue: '|| TO_CHAR(first_number));
+        EXIT WHEN first_number = 5;
+    END LOOP;
+end;

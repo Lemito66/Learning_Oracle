@@ -1,17 +1,13 @@
-/* 2. Pr√°ctica 2-
-‚Ä¢ Crear una variable llamada TEXTO de tipo VARCHAR2(100).
-‚Ä¢ Poner alguna frase
-‚Ä¢ Mediante un bucle, escribir la frase al rev√©s, Usamos el bucle WHILE */
+/* 2. Pr·ctica 2-
+ï Crear una variable llamada TEXTO de tipo VARCHAR2(100).
+ï Poner alguna frase
+ï Mediante un bucle, escribir la frase al revÈs, Usamos el bucle WHILE */
 
 DECLARE
-    TEXTO VARCHAR2(100) := 'Lemito66 es el m√°s crack de todo el mundo';
+    TEXTO VARCHAR2(100) := 'Lemito66 es el m·s crack de todo el mundo';
     I     NUMBER := 1;
     nuevo_texto VARCHAR2(100);
 BEGIN
- /* while i <= length(texto) loop
-        dbms_output.put(substr(texto, length(texto) - i + 1, 1));
-        i := i + 1;
-    end loop; */
     DBMS_OUTPUT.PUT_LINE(SUBSTR(TEXTO, 1, 3));
     while i <= LENGTH(texto) LOOP
         nuevo_texto := SUBSTR(TEXTO, i, 1) || nuevo_texto;

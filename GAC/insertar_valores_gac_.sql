@@ -9,6 +9,7 @@ BEGIN
     ) VALUES (
         V_CANTIDAD,
         V_DESCRIPCION
+        
     );
     --COMMIT;
 EXCEPTION

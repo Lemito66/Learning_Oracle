@@ -56,7 +56,12 @@ CREATE OR REPLACE PROCEDURE PRC_INSERTA_T_EMERGENCIA(
     V_CONSENTIMIENTO_VERBAL CHAR,
     V_COD NUMBER,
     V_ESPECIALIDAD VARCHAR2,
-    V_LOCALIZACION_OTRO VARCHAR2
+    V_LOCALIZACION_OTRO VARCHAR2,
+    v_estable varchar2,
+    v_inestable varchar2,
+    v_fallecido varchar2,
+    v_pelvis_viable varchar2,
+    v_score_mama varchar2
 ) IS
     V_CUERPO_HUMANO    CLOB;
     V_REGISTRO_EDITOR  NUMBER;
@@ -193,7 +198,12 @@ BEGIN
         CD_EDITOR_REGISTRO,
         CD_ULTIMO_REGISTRO,
         ESPECIALIDAD,
-        LOCALIZACION_OTRO
+        LOCALIZACION_OTRO,
+        estable,
+        inestable,
+        fallecido,
+        pelvis_viable,
+        score_mama
     ) VALUES (
         V_CD_FORMULARIO,
         V_CD_ATENDIMENTO,
@@ -255,7 +265,12 @@ BEGIN
         V_REGISTRO_EDITOR,
         V_SECUENCIAL_MAYOR,
         V_ESPECIALIDAD,
-        V_LOCALIZACION_OTRO
+        V_LOCALIZACION_OTRO,
+        v_estable,
+        v_inestable,
+        v_fallecido,
+        v_pelvis_viable,
+        v_score_mama
     );
     COMMIT;
  --prc_inserta_t_tmp_008(v_cd_atendimento);

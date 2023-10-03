@@ -11,3 +11,11 @@ select * from t_emergencia  --formulario antecedentes
 
 
 prc_inserta_t_examen_fisico -- procedimiento que inserta en la tabla de examen fisico
+
+
+select * from t_examen_fisico where cd_atendimento = 301
+
+
+-- Antecedentes
+
+select * from t_tipos_antecedentes 

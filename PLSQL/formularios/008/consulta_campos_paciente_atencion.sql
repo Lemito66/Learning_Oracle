@@ -11,7 +11,7 @@ SELECT
     ) CEDULA_CIUDADANIA_PACIENTE, -- 4
     A.CD_ATENDIMENTO NUMERO_DE_ARCHIVO, -- 5
     TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÓN, -- 6
-    -- 7 por confirmar
+    p.nm_usuario ADMISIONISTA, -- 7
     E.DS_PRIMEIRO_SOBRENOME APELLIDO_PATERNO_PACIENTE, --8
     E.DS_SEGUNDO_SOBRENOME APELLIDO_MATERNO_PACIENTE, -- 9
     E.DS_PRIMEIRO_NOME PRIMER_NOMBRE_PACIENTE, -- 10
@@ -213,7 +213,8 @@ FROM
     LOC_PROCED L, -- por confirmar
     RESPONSA M, -- Responsable
     TIP_PAREN N, -- tipo de parentesco, madre,padre,chofe,amigo, etc.
-    MEIO_TRANSPORTE O -- En que medio de transporte llego el paciente.
+    MEIO_TRANSPORTE O, -- En que medio de transporte llego el paciente.
+    USUARIOS P
     --T_EMERGENCIA P -- tabla de emergencia
 WHERE
     A.CD_MULTI_EMPRESA = B.CD_MULTI_EMPRESA (+)

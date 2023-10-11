@@ -23,15 +23,16 @@ select * from paciente
 
 
 SELECT
-       CD_IDENTIFICADOR_PESSOA,
+       --CD_IDENTIFICADOR_PESSOA,
        NR_DOCUMENTO_ESTRANGEIRO,
     CASE
-        WHEN CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'Cédula'
-        WHEN NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'Pasaporte'
+        WHEN CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÉDULA'
+        WHEN NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'PASAPORTE'
         ELSE NULL -- Otra opción si ninguno de los campos tiene valor
     END AS CEDULA_CIUDADANIA_PACIENTE
 FROM paciente
-where NR_DOCUMENTO_ESTRANGEIRO is null and CD_IDENTIFICADOR_PESSOA is null
+--where NR_DOCUMENTO_ESTRANGEIRO is null and CD_IDENTIFICADOR_PESSOA is null
+where NR_DOCUMENTO_ESTRANGEIRO is not null
 group by 
 
 
@@ -49,3 +50,10 @@ FROM (
     FROM paciente
     WHERE NR_DOCUMENTO_ESTRANGEIRO IS NULL AND CD_IDENTIFICADOR_PESSOA IS NULL
 )
+
+
+-- Edad
+
+select fn_idade(paciente.dt_nascimento) from paciente
+
+select FN_IDADE(DT_NASCIMENTO,'a "años", m "meses", d "días"') from paciente

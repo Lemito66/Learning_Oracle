@@ -1,23 +1,23 @@
 SELECT
     B.DS_MULTI_EMPRESA INSTITUCION_DEL_SISTEMA, --1
     '065472' UNICODIGO, --2
-    -- Estamos a la espera de si el establecimiento de salud es igual a instituciÃ³n del sistema
+    -- Estamos a la espera de si el establecimiento de salud es igual a institución del sistema
     DECODE(A.TP_ATENDIMENTO, 'U', 'EMERGENCIA', '') UNIDAD_OPERATIVA,
     NVL(
         E.CD_IDENTIFICADOR_PESSOA,
         E.NR_DOCUMENTO_ESTRANGEIRO
     ) CEDULA_CIUDADANIA_PACIENTE, -- 4
     A.CD_ATENDIMENTO NUMERO_DE_ARCHIVO, -- 5
-    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÃ“N, -- 6
-    -- 7 por confirmar
+    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÓN, -- 6
+    p.nm_usuario ADMISIONISTA, -- 7
     E.DS_PRIMEIRO_SOBRENOME APELLIDO_PATERNO_PACIENTE, --8
     E.DS_SEGUNDO_SOBRENOME APELLIDO_MATERNO_PACIENTE, -- 9
     E.DS_PRIMEIRO_NOME PRIMER_NOMBRE_PACIENTE, -- 10
     E.DS_SEGUNDO_NOME SEGUNDO_NOMBRE_PACIENTE, -- 11
     CASE
-        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÃ‰DULA'
+        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÉDULA'
         WHEN E.NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'PASAPORTE'
-        ELSE NULL -- Otra opciÃ³n si ninguno de los campos tiene valor
+        ELSE NULL -- Otra opción si ninguno de los campos tiene valor
     END AS CEDULA_CIUDADANIA_PACIENTE, -- 12
     DECODE(
         E.TP_ESTADO_CIVIL,
@@ -38,14 +38,14 @@ SELECT
     TO_CHAR(E.DT_NASCIMENTO, 'dd/mm/yyyy') FECHA_NACIMIENTO_PACIENTE, -- 17
     F.NM_CIDADE LUGAR_NACIMIENTO_PACIENTE, -- 18
     H.DS_CIDADANIA NACIONALIDAD_PACIENTE, -- 19
-    FN_IDADE(E.DT_NASCIMENTO,'a "aÃ±os", m "meses", d "dÃ­as"')EDAD_PACIENTE, -- 20
+    FN_IDADE(E.DT_NASCIMENTO,'a "años", m "meses", d "días"')EDAD_PACIENTE, -- 20
     -- 21 por preguntar
     -- 22 por preguntar
     -- 23 por preguntar
     DECODE(
         E.TP_COR,
         'S',
-        'SIN INFORMACIÃ“N',
+        'SIN INFORMACIÓN',
         'R',
         'MONTUBIO',
         'P',
@@ -60,7 +60,7 @@ SELECT
     DECODE(
         E.TP_COR,
         'S',
-        'SIN INFORMACIÃ“N',
+        'SIN INFORMACIÓN',
         'R',
         'MONTUBIO',
         'P',
@@ -92,7 +92,7 @@ SELECT
     C.NM_CIDADE CANTON_EMPRESA,
     D.NM_ESTADO PROVINCIA_EMPRESA,
     E.CD_PACIENTE NHCL,
-    A.CD_ATENDIMENTO ADMISIÃ“N,
+    A.CD_ATENDIMENTO ADMISIÓN,
     DECODE(A.TP_MEDICO_ELEITO, 'H', 'HOSPITAL', 'PARTICULAR') TIPO_PACIENTE,
     E.DS_PRIMEIRO_SOBRENOME APELLIDO_PATERNO_PACIENTE,
     E.DS_SEGUNDO_SOBRENOME APELLIDO_MATERNO_PACIENTE,
@@ -112,7 +112,7 @@ SELECT
     DECODE(
         E.TP_COR,
         'S',
-        'SIN INFORMACIÃ“N',
+        'SIN INFORMACIÓN',
         'R',
         'MONTUBIO',
         'P',
@@ -140,7 +140,7 @@ SELECT
         'UNION LIBRE'
     ) ESTADO_CIVIL_PACIENTE,
     I.DS_GRAU_INS INSTRUCCION_PACIENTE,
-    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÃ“N,
+    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÓN,
     J.NM_PROFISSAO OCUPACION_PACIENTE,
     E.DS_TRABALHO EMPRESA_TRABAJO_PACIENTE,
     K.NM_CONVENIO CONVENIO_PACIENTE,
@@ -197,26 +197,27 @@ SELECT
     V_CAMPO48,
     V_CAMPO53 */
 FROM
-    ATENDIME A, -- tabla de la atenciÃ³n
-    MULTI_EMPRESAS B, -- tabla de la empresa, aquÃ­ estÃ¡ hospital metroplitano
+    ATENDIME A, -- tabla de la atención
+    MULTI_EMPRESAS B, -- tabla de la empresa, aquí está hospital metroplitano
     CIDADE C, -- Ciudades
     ESTADO D, -- Provincias
     PACIENTE E, -- Datos del paciente
     CIDADE F, -- Ciudades
     ESTADO G, -- Provincia
     CIDADANIAS H, -- Nacionalidad
-    GRAU_INS I, -- Grado de instrucciÃ³n, ingeniero, bachiller, etc.
+    GRAU_INS I, -- Grado de instrucción, ingeniero, bachiller, etc.
     PROFISSAO J, -- profesiones
-    CONVENIO K, -- convenios por seguro mÃ©dico
+    CONVENIO K, -- convenios por seguro médico
     LOC_PROCED L, -- por confirmar
     RESPONSA M, -- Responsable
     TIP_PAREN N, -- tipo de parentesco, madre,padre,chofe,amigo, etc.
-    MEIO_TRANSPORTE O -- En que medio de transporte llego el paciente.
+    MEIO_TRANSPORTE O, -- En que medio de transporte llego el paciente.
+    USUARIOS P
     --T_EMERGENCIA P -- tabla de emergencia
 WHERE
     A.CD_MULTI_EMPRESA = B.CD_MULTI_EMPRESA (+)
     AND B.CD_CIDADE = C.CD_CIDADE (+)
-    AND A.CD_ATENDIMENTO = VATENDIMENTO
+    AND A.CD_ATENDIMENTO = 98699
     AND C.CD_ESTADO = D.CD_ESTADO (+)
     AND A.CD_PACIENTE = E.CD_PACIENTE (+)
     AND E.CD_CIDADE = F.CD_CIDADE (+)
@@ -228,4 +229,5 @@ WHERE
     AND A.CD_LOC_PROCED = L.CD_LOC_PROCED (+)
     AND A.CD_ATENDIMENTO = M.CD_ATENDIMENTO (+)
     AND M.CD_TIP_PAREN = N.CD_TIP_PAREN (+)
-    AND A.CD_MEIO_TRANSPORTE = O.CD_MEIO_TRANSPORTE (+);
+    AND A.CD_MEIO_TRANSPORTE = O.CD_MEIO_TRANSPORTE (+)
+    AND A.NM_USUARIO = p.cd_usuario;

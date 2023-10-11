@@ -1,23 +1,23 @@
 SELECT
     B.DS_MULTI_EMPRESA INSTITUCION_DEL_SISTEMA, --1
     '065472' UNICODIGO, --2
-    -- Estamos a la espera de si el establecimiento de salud es igual a institución del sistema
+    -- Estamos a la espera de si el establecimiento de salud es igual a instituciÃ³n del sistema
     DECODE(A.TP_ATENDIMENTO, 'U', 'EMERGENCIA', '') UNIDAD_OPERATIVA,
     NVL(
         E.CD_IDENTIFICADOR_PESSOA,
         E.NR_DOCUMENTO_ESTRANGEIRO
     ) CEDULA_CIUDADANIA_PACIENTE, -- 4
     A.CD_ATENDIMENTO NUMERO_DE_ARCHIVO, -- 5
-    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÓN, -- 6
+    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÃ“N, -- 6
     p.nm_usuario ADMISIONISTA, -- 7
     E.DS_PRIMEIRO_SOBRENOME APELLIDO_PATERNO_PACIENTE, --8
     E.DS_SEGUNDO_SOBRENOME APELLIDO_MATERNO_PACIENTE, -- 9
     E.DS_PRIMEIRO_NOME PRIMER_NOMBRE_PACIENTE, -- 10
     E.DS_SEGUNDO_NOME SEGUNDO_NOMBRE_PACIENTE, -- 11
     CASE
-        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÉDULA'
+        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÃ‰DULA'
         WHEN E.NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'PASAPORTE'
-        ELSE NULL -- Otra opción si ninguno de los campos tiene valor
+        ELSE NULL -- Otra opciÃ³n si ninguno de los campos tiene valor
     END AS CEDULA_CIUDADANIA_PACIENTE, -- 12
     DECODE(
         E.TP_ESTADO_CIVIL,
@@ -38,14 +38,18 @@ SELECT
     TO_CHAR(E.DT_NASCIMENTO, 'dd/mm/yyyy') FECHA_NACIMIENTO_PACIENTE, -- 17
     F.NM_CIDADE LUGAR_NACIMIENTO_PACIENTE, -- 18
     H.DS_CIDADANIA NACIONALIDAD_PACIENTE, -- 19
-    FN_IDADE(E.DT_NASCIMENTO,'a "años", m "meses", d "días"')EDAD_PACIENTE, -- 20
-    -- 21 por preguntar
-    -- 22 por preguntar
+    FN_IDADE (E.DT_NASCIMENTO, 'a "aÃ±os", m "meses", d "dÃ­as"') EDAD_PACIENTE, -- 20
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'Grupo Prioritario'
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'Grupo Prioritario'
+    else 'No es Grupo Prioritario' end GRUPO_PRIORITARIO_21,
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'Grupo Prioritario'
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'Grupo Prioritario'
+    else 'No es Grupo Prioritario' end GRUPO_PRIORITARIO_22,
     -- 23 por preguntar
     DECODE(
         E.TP_COR,
         'S',
-        'SIN INFORMACIÓN',
+        'SIN INFORMACIÃ“N',
         'R',
         'MONTUBIO',
         'P',
@@ -60,7 +64,7 @@ SELECT
     DECODE(
         E.TP_COR,
         'S',
-        'SIN INFORMACIÓN',
+        'SIN INFORMACIÃ“N',
         'R',
         'MONTUBIO',
         'P',
@@ -87,18 +91,23 @@ SELECT
     M.NM_RESPONSAVEL AVISAR_A_PACIENTE, -- 38
     N.DS_TIP_PAREN PARIENTE_PACIENTE, -- 39
     M.DS_ENDERECO DIRECCION_PARIENTE_PACIENTE, -- 40
-    M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 41
+    M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 41
+    -- 42 falta por confirmar,
+    -- 43 falta por confirmar,
+    -- 44 falta por confirmar,
+    -- 45 se lo trae de otro script
+    null INSTITUCION_O_PERSONA_QUE_ENTREGA_AL_PACIENTE, -- 46
+    M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 47
     /* 'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,
     C.NM_CIDADE CANTON_EMPRESA,
     D.NM_ESTADO PROVINCIA_EMPRESA,
     E.CD_PACIENTE NHCL,
-    A.CD_ATENDIMENTO ADMISIÓN,
+    A.CD_ATENDIMENTO ADMISIÃ“N,
     DECODE(A.TP_MEDICO_ELEITO, 'H', 'HOSPITAL', 'PARTICULAR') TIPO_PACIENTE,
     E.DS_PRIMEIRO_SOBRENOME APELLIDO_PATERNO_PACIENTE,
     E.DS_SEGUNDO_SOBRENOME APELLIDO_MATERNO_PACIENTE,
     E.DS_PRIMEIRO_NOME PRIMER_NOMBRE_PACIENTE,
     E.DS_SEGUNDO_NOME SEGUNDO_NOMBRE_PACIENTE,
-    
     E.DS_ENDERECO DIRECCION_RESIDENCIAL_PACIENTE,
     NULL BARRIO_PACIENTE,
     E.NM_BAIRRO PARROQUIA_PACIENTE,
@@ -112,7 +121,7 @@ SELECT
     DECODE(
         E.TP_COR,
         'S',
-        'SIN INFORMACIÓN',
+        'SIN INFORMACIÃ“N',
         'R',
         'MONTUBIO',
         'P',
@@ -140,7 +149,7 @@ SELECT
         'UNION LIBRE'
     ) ESTADO_CIVIL_PACIENTE,
     I.DS_GRAU_INS INSTRUCCION_PACIENTE,
-    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÓN,
+    TO_CHAR(A.HR_ATENDIMENTO, 'dd/mm/yyyy') FECHA_ADMISIÃ“N,
     J.NM_PROFISSAO OCUPACION_PACIENTE,
     E.DS_TRABALHO EMPRESA_TRABAJO_PACIENTE,
     K.NM_CONVENIO CONVENIO_PACIENTE,
@@ -153,8 +162,7 @@ SELECT
     L.DS_LOC_PROCED ENTREGA_PACIENTE,
     NVL(E.TP_SANGUINEO, 'DESC.') GRUPO_SANGUINEO,
     DECODE(A.SN_NOTIFICAR_POLICIA, 'N', 'NO', 'SI') NOTIFICACION_POLICIA,
-    DECODE(A.SN_CUSTODIA_POLICIAL, 'N', 'NO', 'SI') CUSTODIA_POLICIAL INTO 
-    V_CAMPO1,
+    DECODE(A.SN_CUSTODIA_POLICIAL, 'N', 'NO', 'SI') CUSTODIA_POLICIAL INTO V_CAMPO1,
     V_CAMPO2,
     V_CAMPO3,
     V_CAMPO4,
@@ -197,17 +205,17 @@ SELECT
     V_CAMPO48,
     V_CAMPO53 */
 FROM
-    ATENDIME A, -- tabla de la atención
-    MULTI_EMPRESAS B, -- tabla de la empresa, aquí está hospital metroplitano
+    ATENDIME A, -- tabla de la atenciÃ³n
+    MULTI_EMPRESAS B, -- tabla de la empresa, aquÃ­ estÃ¡ hospital metroplitano
     CIDADE C, -- Ciudades
     ESTADO D, -- Provincias
     PACIENTE E, -- Datos del paciente
     CIDADE F, -- Ciudades
     ESTADO G, -- Provincia
     CIDADANIAS H, -- Nacionalidad
-    GRAU_INS I, -- Grado de instrucción, ingeniero, bachiller, etc.
+    GRAU_INS I, -- Grado de instrucciÃ³n, ingeniero, bachiller, etc.
     PROFISSAO J, -- profesiones
-    CONVENIO K, -- convenios por seguro médico
+    CONVENIO K, -- convenios por seguro mÃ©dico
     LOC_PROCED L, -- por confirmar
     RESPONSA M, -- Responsable
     TIP_PAREN N, -- tipo de parentesco, madre,padre,chofe,amigo, etc.

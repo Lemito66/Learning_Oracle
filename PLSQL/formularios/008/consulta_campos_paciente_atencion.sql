@@ -98,7 +98,7 @@ SELECT
     -- 43 falta por confirmar,
     -- 44 falta por confirmar,
     -- 45 se lo trae de otro script
-    null INSTITUCION_O_PERSONA_QUE_ENTREGA_AL_PACIENTE, -- 46
+    null INSTITUCIONENTREGA_AL_PACIENTE, -- 46
     M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 47
     /* 'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,
     C.NM_CIDADE CANTON_EMPRESA,

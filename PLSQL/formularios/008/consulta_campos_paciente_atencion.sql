@@ -41,8 +41,12 @@ SELECT
     F.NM_CIDADE LUGAR_NACIMIENTO_PACIENTE, -- 18
     H.DS_CIDADANIA NACIONALIDAD_PACIENTE, -- 19
     FN_IDADE (E.DT_NASCIMENTO, 'a "años", m "meses", d "días"') EDAD_PACIENTE, -- 20
-    -- 21 por preguntar
-    -- 22 por preguntar
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'Grupo Prioritario'
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'Grupo Prioritario'
+    else 'No es Grupo Prioritario' end GRUPO_PRIORITARIO_21,
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'Grupo Prioritario'
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'Grupo Prioritario'
+    else 'No es Grupo Prioritario' end GRUPO_PRIORITARIO_22,
     -- 23 por preguntar
     DECODE(
         E.TP_COR,

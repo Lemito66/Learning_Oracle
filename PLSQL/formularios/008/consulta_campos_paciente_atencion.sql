@@ -44,6 +44,52 @@ SELECT
     -- 21 por preguntar
     -- 22 por preguntar
     -- 23 por preguntar
+    DECODE(
+        E.TP_COR,
+        'S',
+        'SIN INFORMACIÓN',
+        'R',
+        'MONTUBIO',
+        'P',
+        'MESTIZO',
+        'I',
+        'INDIGENA',
+        'B',
+        'BLANCO',
+        'A',
+        'AFROECUATORIANO'
+    ) GRUPO_CULTURAL_PACIENTE, -- 24
+    DECODE(
+        E.TP_COR,
+        'S',
+        'SIN INFORMACIÓN',
+        'R',
+        'MONTUBIO',
+        'P',
+        'MESTIZO',
+        'I',
+        'INDIGENA',
+        'B',
+        'BLANCO',
+        'A',
+        'AFROECUATORIANO'
+    ) GRUPO_CULTURAL_PACIENTE, -- 25
+    null PUEBLOS, -- 26
+    I.DS_GRAU_INS INSTRUCCION_PACIENTE, -- 27
+    null ESTADO_NIVEL_DE_EDUCACION, -- 28
+    E.DS_TRABALHO EMPRESA_TRABAJO_PACIENTE, -- 29
+    J.NM_PROFISSAO OCUPACION_PACIENTE, -- 30
+    K.NM_CONVENIO CONVENIO_PACIENTE, -- 31
+    G.NM_ESTADO PROVINCIA_PACIENTE, -- 32
+    F.NM_CIDADE CANTON_PACIENTE, -- 33
+    E.NM_BAIRRO PARROQUIA_PACIENTE, -- 34
+    NULL BARRIO_PACIENTE, -- 35
+    E.DS_ENDERECO DIRECCION_RESIDENCIAL_PACIENTE, -- 36
+    null REFERENCIA, -- 37
+    M.NM_RESPONSAVEL AVISAR_A_PACIENTE, -- 38
+    N.DS_TIP_PAREN PARIENTE_PACIENTE, -- 39
+    M.DS_ENDERECO DIRECCION_PARIENTE_PACIENTE, -- 40
+    M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 41
     'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,
     C.NM_CIDADE CANTON_EMPRESA,
     D.NM_ESTADO PROVINCIA_EMPRESA,
@@ -168,6 +214,7 @@ FROM
     RESPONSA M, -- Responsable
     TIP_PAREN N, -- tipo de parentesco, madre,padre,chofe,amigo, etc.
     MEIO_TRANSPORTE O -- En que medio de transporte llego el paciente.
+    --T_EMERGENCIA P -- tabla de emergencia
 WHERE
     A.CD_MULTI_EMPRESA = B.CD_MULTI_EMPRESA (+)
     AND B.CD_CIDADE = C.CD_CIDADE (+)

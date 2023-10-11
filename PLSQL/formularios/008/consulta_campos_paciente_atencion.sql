@@ -90,7 +90,13 @@ SELECT
     N.DS_TIP_PAREN PARIENTE_PACIENTE, -- 39
     M.DS_ENDERECO DIRECCION_PARIENTE_PACIENTE, -- 40
     M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 41
-    'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,
+    -- 42 falta por confirmar,
+    -- 43 falta por confirmar,
+    -- 44 falta por confirmar,
+    -- 45 se lo trae de otro script
+    null INSTITUCION_O_PERSONA_QUE_ENTREGA_AL_PACIENTE, -- 46
+    M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 47
+    /* 'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,
     C.NM_CIDADE CANTON_EMPRESA,
     D.NM_ESTADO PROVINCIA_EMPRESA,
     E.CD_PACIENTE NHCL,
@@ -195,7 +201,7 @@ SELECT
     V_CAMPO40,
     V_CAMPO47,
     V_CAMPO48,
-    V_CAMPO53
+    V_CAMPO53 */
 FROM
     ATENDIME A, -- tabla de la atención
     MULTI_EMPRESAS B, -- tabla de la empresa, aquí está hospital metroplitano

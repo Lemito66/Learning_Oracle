@@ -40,18 +40,14 @@ SELECT
     H.DS_CIDADANIA NACIONALIDAD_PACIENTE, -- 19
     FN_IDADE (E.DT_NASCIMENTO, 'a "años", m "meses", d "días"') EDAD_PACIENTE, -- 20
     case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'X' 
-    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'X'
+    when FN_IDADE(E.DT_NASCIMENTO) >= 60 then 'X'
     else null end GRUPO_PRIORITARIO_SI,--21
     case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then null 
-    when FN_IDADE(E.DT_NASCIMENTO) > 60 then null
+    when FN_IDADE(E.DT_NASCIMENTO) >= 60 then null
     else 'X' end GRUPO_PRIORITARIO_NO,--22
-    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 5 then 'PRIMERA INFANCIA'
-    when FN_IDADE(E.DT_NASCIMENTO) between 6 and 11 then 'INFANCIA'
-    when FN_IDADE(E.DT_NASCIMENTO) between 12 and 18 then 'ADOLESCENCIA'
-    when FN_IDADE(E.DT_NASCIMENTO) between 14 and 26 then 'JUVENTUD'
-    when FN_IDADE(E.DT_NASCIMENTO) between 27 and 59 then 'ADULTEZ'
-    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'PERSONA MAYOR'
-    else null end ESPECIFIQUE,-- 23
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'MENOR DE EDAD'
+    when FN_IDADE(E.DT_NASCIMENTO) >= 60 then 'ADULTO MAYOR'
+    else 'NO ES PRIORITARIO' end ESPECIFIQUE,-- 23
     DECODE(
         E.TP_COR,
         'S',

@@ -17,7 +17,7 @@ SELECT
     CASE
         WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÉDULA'
         WHEN E.NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'PASAPORTE'
-        ELSE NULL -- Otra opci�n si ninguno de los campos tiene valor
+        ELSE NULL -- Otra opción si ninguno de los campos tiene valor
     END AS CEDULA_CIUDADANIA_PACIENTE, -- 12
     DECODE(
         E.TP_ESTADO_CIVIL,
@@ -39,19 +39,19 @@ SELECT
     F.NM_CIDADE LUGAR_NACIMIENTO_PACIENTE, -- 18
     H.DS_CIDADANIA NACIONALIDAD_PACIENTE, -- 19
     FN_IDADE (E.DT_NASCIMENTO, 'a "años", m "meses", d "días"') EDAD_PACIENTE, -- 20
-    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'X' --21
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'X' 
     when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'X'
-    else null end GRUPO_PRIORITARIO_SI,
-    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then null --22
+    else null end GRUPO_PRIORITARIO_SI,--21
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then null 
     when FN_IDADE(E.DT_NASCIMENTO) > 60 then null
-    else 'X' end GRUPO_PRIORITARIO_NO,
-    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 5 then 'PRIMERA INFANCIA' --23
+    else 'X' end GRUPO_PRIORITARIO_NO,--22
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 5 then 'PRIMERA INFANCIA'
     when FN_IDADE(E.DT_NASCIMENTO) between 6 and 11 then 'INFANCIA'
     when FN_IDADE(E.DT_NASCIMENTO) between 12 and 18 then 'ADOLESCENCIA'
     when FN_IDADE(E.DT_NASCIMENTO) between 14 and 26 then 'JUVENTUD'
     when FN_IDADE(E.DT_NASCIMENTO) between 14 and 26 then 'ADULTEZ'
     when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'PERSONA MAYOR'
-    else null end ESPECIFIQUE,-- 23 por preguntar
+    else null end ESPECIFIQUE,-- 23
     DECODE(
         E.TP_COR,
         'S',
@@ -101,7 +101,8 @@ SELECT
     -- 42 falta por confirmar,
     -- 43 falta por confirmar,
     -- 44 falta por confirmar,
-    -- 45 se lo trae de otro script. No hay que traer este campo
+    O.DS_MEIO_TRANSPORTE LLEGADA_PACIENTE, -- 42
+    -- 45 No hay que traer este campo
     null INSTITUCIONENTREGA_AL_PACIENTE, -- 46
     M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 47
     /* 'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,

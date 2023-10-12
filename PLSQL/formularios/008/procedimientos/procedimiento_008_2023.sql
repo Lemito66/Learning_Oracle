@@ -470,8 +470,9 @@ SELECT
     O.DS_MEIO_TRANSPORTE LLEGADA_PACIENTE, -- 42
     -- 45 No hay que traer este campo
     null INSTITUCIONENTREGA_AL_PACIENTE, -- 46
-    M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 47
-    INTO 
+    M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 47
+    E.TP_SANGUINEO GRUPO_SANGUINEO_PACIENTE -- 57
+    /* INTO 
     V_CAMPO1,
     V_CAMPO2,
     V_CAMPO3,
@@ -515,7 +516,8 @@ SELECT
     V_CAMPO41,
     V_CAMPO42,
     V_CAMPO46,
-    V_CAMPO47 
+    V_CAMPO47,
+    V_CAMPO57 */
 FROM
     ATENDIME A, -- tabla de la atención
     MULTI_EMPRESAS B, -- tabla de la empresa, aquí está hospital metroplitano

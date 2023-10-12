@@ -1,7 +1,7 @@
 SELECT
-    B.DS_MULTI_EMPRESA INSTITUCION_DEL_SISTEMA, --1
+    'HOSPITAL METROPOLITANO' INSTITUCION_DEL_SISTEMA, --1
     '065472' UNICODIGO, --2
-    -- Estamos a la espera de si el establecimiento de salud es igual a institución del sistema
+    'HOSPITAL METROPOLITANO' INSTITUCION_DEL_SISTEMA, --3
     DECODE(A.TP_ATENDIMENTO, 'U', 'EMERGENCIA', '') UNIDAD_OPERATIVA,
     NVL(
         E.CD_IDENTIFICADOR_PESSOA,
@@ -15,9 +15,9 @@ SELECT
     E.DS_PRIMEIRO_NOME PRIMER_NOMBRE_PACIENTE, -- 10
     E.DS_SEGUNDO_NOME SEGUNDO_NOMBRE_PACIENTE, -- 11
     CASE
-        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÉDULA'
+        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'C�DULA'
         WHEN E.NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'PASAPORTE'
-        ELSE NULL -- Otra opción si ninguno de los campos tiene valor
+        ELSE NULL -- Otra opci�n si ninguno de los campos tiene valor
     END AS CEDULA_CIUDADANIA_PACIENTE, -- 12
     DECODE(
         E.TP_ESTADO_CIVIL,
@@ -39,12 +39,12 @@ SELECT
     F.NM_CIDADE LUGAR_NACIMIENTO_PACIENTE, -- 18
     H.DS_CIDADANIA NACIONALIDAD_PACIENTE, -- 19
     FN_IDADE (E.DT_NASCIMENTO, 'a "años", m "meses", d "días"') EDAD_PACIENTE, -- 20
-    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'Grupo Prioritario'
-    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'Grupo Prioritario'
-    else 'No es Grupo Prioritario' end GRUPO_PRIORITARIO_21,
-    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'Grupo Prioritario'
-    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'Grupo Prioritario'
-    else 'No es Grupo Prioritario' end GRUPO_PRIORITARIO_22,
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'X' --21
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'X'
+    else null end GRUPO_PRIORITARIO_21,
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then null --22
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then null
+    else 'X' end GRUPO_PRIORITARIO_22,
     -- 23 por preguntar
     DECODE(
         E.TP_COR,
@@ -95,7 +95,7 @@ SELECT
     -- 42 falta por confirmar,
     -- 43 falta por confirmar,
     -- 44 falta por confirmar,
-    -- 45 se lo trae de otro script
+    -- 45 se lo trae de otro script. No hay que traer este campo
     null INSTITUCIONENTREGA_AL_PACIENTE, -- 46
     M.NR_FONE TELEFONO_PACIENTE_PACIENTE -- 47
     /* 'BELISARIO QUEVEDO' PARROQUIA_EMPRESA,
@@ -225,7 +225,7 @@ FROM
 WHERE
     A.CD_MULTI_EMPRESA = B.CD_MULTI_EMPRESA (+)
     AND B.CD_CIDADE = C.CD_CIDADE (+)
-    AND A.CD_ATENDIMENTO = 98699
+    AND A.CD_ATENDIMENTO = 96370--96372--98699
     AND C.CD_ESTADO = D.CD_ESTADO (+)
     AND A.CD_PACIENTE = E.CD_PACIENTE (+)
     AND E.CD_CIDADE = F.CD_CIDADE (+)

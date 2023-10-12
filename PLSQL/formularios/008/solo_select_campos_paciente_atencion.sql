@@ -15,7 +15,7 @@ SELECT
     E.DS_PRIMEIRO_NOME PRIMER_NOMBRE_PACIENTE, -- 10
     E.DS_SEGUNDO_NOME SEGUNDO_NOMBRE_PACIENTE, -- 11
     CASE
-        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'C�DULA'
+        WHEN E.CD_IDENTIFICADOR_PESSOA IS NOT NULL THEN 'CÉDULA'
         WHEN E.NR_DOCUMENTO_ESTRANGEIRO IS NOT NULL THEN 'PASAPORTE'
         ELSE NULL -- Otra opci�n si ninguno de los campos tiene valor
     END AS CEDULA_CIUDADANIA_PACIENTE, -- 12
@@ -41,11 +41,17 @@ SELECT
     FN_IDADE (E.DT_NASCIMENTO, 'a "años", m "meses", d "días"') EDAD_PACIENTE, -- 20
     case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then 'X' --21
     when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'X'
-    else null end GRUPO_PRIORITARIO_21,
+    else null end GRUPO_PRIORITARIO_SI,
     case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 18 then null --22
     when FN_IDADE(E.DT_NASCIMENTO) > 60 then null
-    else 'X' end GRUPO_PRIORITARIO_22,
-    -- 23 por preguntar
+    else 'X' end GRUPO_PRIORITARIO_NO,
+    case when FN_IDADE(E.DT_NASCIMENTO) between 0 and 5 then 'PRIMERA INFANCIA' --23
+    when FN_IDADE(E.DT_NASCIMENTO) between 6 and 11 then 'INFANCIA'
+    when FN_IDADE(E.DT_NASCIMENTO) between 12 and 18 then 'ADOLESCENCIA'
+    when FN_IDADE(E.DT_NASCIMENTO) between 14 and 26 then 'JUVENTUD'
+    when FN_IDADE(E.DT_NASCIMENTO) between 14 and 26 then 'ADULTEZ'
+    when FN_IDADE(E.DT_NASCIMENTO) > 60 then 'PERSONA MAYOR'
+    else null end ESPECIFIQUE,-- 23 por preguntar
     DECODE(
         E.TP_COR,
         'S',

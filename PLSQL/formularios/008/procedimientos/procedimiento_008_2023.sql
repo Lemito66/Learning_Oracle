@@ -539,7 +539,7 @@ FROM
 WHERE
     A.CD_MULTI_EMPRESA = B.CD_MULTI_EMPRESA (+)
     AND B.CD_CIDADE = C.CD_CIDADE (+)
-    AND A.CD_ATENDIMENTO = 96370--96372--98699
+    AND A.CD_ATENDIMENTO = VATENDIMENTO--96370--96372--98699
     AND C.CD_ESTADO = D.CD_ESTADO (+)
     AND A.CD_PACIENTE = E.CD_PACIENTE (+)
     AND E.CD_CIDADE = F.CD_CIDADE (+)
@@ -777,90 +777,7 @@ EXCEPTION WHEN OTHERS THEN NULL;
 
 END;
 
--- CAMPOS DE FORMULARIOS
-BEGIN
-SELECT
-    (
-        SELECT
-            D.LO_CONTEUDO
-        FROM
-            PW_EDITOR_CLINICO A,
-            PW_DOCUMENTO_CLINICO B,
-            EDITOR.EDITOR_REGISTRO C,
-            EDITOR.EDITOR_REGISTRO_CAMPO D,
-            EDITOR.EDITOR_CAMPO E
-        WHERE
-            A.CD_DOCUMENTO = 645
-            AND A.CD_DOCUMENTO_CLINICO = B.CD_DOCUMENTO_CLINICO
-            AND B.TP_STATUS = 'FECHADO'
-            AND A.CD_EDITOR_REGISTRO = C.CD_REGISTRO
-            AND B.CD_ATENDIMENTO = VATENDIMENTO
-            AND C.CD_REGISTRO = D.CD_REGISTRO
-            AND C.CD_REGISTRO = A.CD_EDITOR_REGISTRO
-            AND D.CD_CAMPO = E.CD_CAMPO
-            AND E.CD_METADADO = 76058
-            AND B.CD_DOCUMENTO_CLINICO IN (
-                SELECT
-                    MAX(X.CD_DOCUMENTO_CLINICO)
-                FROM
-                    PW_DOCUMENTO_CLINICO X,
-                    PW_EDITOR_CLINICO Y
-                WHERE
-                    X.TP_STATUS = 'FECHADO'
-                    AND Y.CD_DOCUMENTO = 645
-                    AND X.CD_ATENDIMENTO = VATENDIMENTO
-                    AND X.CD_DOCUMENTO_CLINICO = Y.CD_DOCUMENTO_CLINICO
-            )
-    ) OTRO_MOTIVO,
-    (
-        SELECT
-            X.LO_CONTEUDO
-        FROM
-            EDITOR.EDITOR_REGISTRO_CAMPO X,
-            PW_EDITOR_CLINICO PW,
-            PW_DOCUMENTO_CLINICO DOC
-        WHERE
-            X.CD_CAMPO IN (
-                293670,
-                261292,
-                297052,
-                297214,
-                320538,
-                320758,
-                343291,
-                97907,
-                349991,
-                373231,
-                374652,
-                375081,
-                429896
-            )
-            AND PW.CD_DOCUMENTO_CLINICO = DOC.CD_DOCUMENTO_CLINICO
-            AND PW.CD_EDITOR_REGISTRO = X.CD_REGISTRO
-            AND DOC.CD_ATENDIMENTO = VATENDIMENTO
-            AND DOC.TP_STATUS = 'FECHADO'
-            AND DOC.CD_DOCUMENTO_CLINICO IN (
-                SELECT
-                    MAX(DOCC.CD_DOCUMENTO_CLINICO)
-                FROM
-                    EDITOR.EDITOR_REGISTRO_CAMPO XX,
-                    PW_EDITOR_CLINICO PWW,
-                    PW_DOCUMENTO_CLINICO DOCC
-                WHERE
-                    XX.CD_CAMPO = X.CD_CAMPO
-                    AND PWW.CD_DOCUMENTO_CLINICO = DOCC.CD_DOCUMENTO_CLINICO
-                    AND PWW.CD_EDITOR_REGISTRO = XX.CD_REGISTRO
-                    AND DOCC.CD_ATENDIMENTO = VATENDIMENTO
-                    AND DOCC.TP_STATUS = 'FECHADO'
-            )
-    ) IMAGEN INTO V_CAMPO49,
-    V_CAMPO121
-FROM
-    DUAL;
-
-EXCEPTION WHEN OTHERS THEN NULL;
-
-END;
+-- Se elimino campos formularios
 
 -- ANTECEDENTE, EXAMEN FISICO
 BEGIN

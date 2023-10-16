@@ -166,8 +166,8 @@ SELECT
     V_CAMPO127,
     V_CAMPO128,
     V_CAMPO129,
-
-    V_CAMPO130
+    V_CAMPO130,
+    V_CAMPO131
      */
     
 FROM

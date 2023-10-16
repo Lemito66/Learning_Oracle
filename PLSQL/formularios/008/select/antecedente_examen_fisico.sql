@@ -2,7 +2,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -12,7 +12,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -22,7 +22,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -32,7 +32,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -42,7 +42,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -52,7 +52,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -62,7 +62,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -72,7 +72,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -82,7 +82,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -92,7 +92,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -102,7 +102,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -112,7 +112,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -122,7 +122,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -132,7 +132,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE
@@ -142,7 +142,7 @@ SELECT
     (
         SELECT
             DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
-            --a.tipo_examen_fisico
+            
         FROM
             T_EXAMEN_FISICO A
         WHERE

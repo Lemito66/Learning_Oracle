@@ -1,0 +1,4 @@
+SELECT * from T_EXAMEN_FISICO where T_EXAMEN_FISICO.Cd_Atendimento = 654
+
+
+DELETE from T_EXAMEN_FISICO where T_EXAMEN_FISICO.Tipo_Examen_Fisico = 'INGRE - PERINÉ'

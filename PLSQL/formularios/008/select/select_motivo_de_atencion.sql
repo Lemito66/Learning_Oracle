@@ -1,110 +1,113 @@
 SELECT
+    -- Falta 58, 59, 60
     DECODE(
         A.DETALLE_EVENTO,
         'ACCIDENTE DE TRÁNSITO',
-        'true',
-        'false'
-    ) ACCIDENTE_TRANSITO,
-    DECODE(A.DETALLE_EVENTO, 'CAÍDA', 'true', 'false') CAIDA,
-    DECODE(A.DETALLE_EVENTO, 'QUEMADURA', 'true', 'false') QUEMADURA,
-    DECODE(A.DETALLE_EVENTO, 'MORDEDURA', 'true', 'false') MORDEDURA,
-    DECODE(A.DETALLE_EVENTO, 'AHOGAMIENTO', 'true', 'false') AHOGAMIENTO,
+        'X',
+        null
+    ) ACCIDENTE_TRANSITO, -- 62
+    DECODE(A.DETALLE_EVENTO, 'CAÍDA', 'X', null) CAIDA, --63
+    DECODE(A.DETALLE_EVENTO, 'QUEMADURA', 'X', null) QUEMADURA, --64
+    DECODE(A.DETALLE_EVENTO, 'MORDEDURA', 'X', null) MORDEDURA, -- 65
+    DECODE(A.DETALLE_EVENTO, 'AHOGAMIENTO', 'X', null) AHOGAMIENTO, -- 66
     DECODE(
         A.DETALLE_EVENTO,
         'CUERPO EXTRAÑO',
-        'true',
-        'false'
-    ) CUERPO_EXTRANIO,
+        'X',
+        null
+    ) CUERPO_EXTRANIO, -- 67
     DECODE(
         A.DETALLE_EVENTO,
         'APLASTAMIENTO',
-        'true',
-        'false'
-    ) APLASTAMIENTO,
+        'X',
+        null
+    ) APLASTAMIENTO, -- 68
     DECODE(
         A.DETALLE_EVENTO,
         'OTRO ACCIDENTE',
-        'true',
-        'false'
-    ) OTRO_ACCIDENTE,
+        'X',
+        null
+    ) OTRO_ACCIDENTE, --69
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA X ARMA DE FUEGO',
-        'true',
-        'false'
-    ) ARMA_FUEGO,
+        'X',
+        null
+    ) ARMA_FUEGO, -- 70
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA X ARMA C.',
-        'true',
-        'false'
-    ) ARMA_C,
+        'X',
+        null
+    ) ARMA_C, -- 71
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA X RIÑA',
-        'true',
-        'false'
-    ) VIOLENCIA_RINIA,
+        'X',
+        null
+    ) VIOLENCIA_RINIA, -- 72
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA FAMILIAR',
-        'true',
-        'false'
-    ) VIOLENCIA_FAMILIAR,
-    DECODE(A.DETALLE_EVENTO, 'ABUSO FÍSICO', 'true', 'false') ABUSO_FISICO,
+        'X',
+        null
+    ) VIOLENCIA_FAMILIAR, --73
+    DECODE(A.DETALLE_EVENTO, 'ABUSO FÍSICO', 'X', null) ABUSO_FISICO, -- 74
     DECODE(
         A.DETALLE_EVENTO,
         'ABUSO PSICOLÓGICO',
-        'true',
-        'false'
-    ) ABUSO_SICOLOGICO,
-    DECODE(A.DETALLE_EVENTO, 'ABUSO SEXUAL', 'true', 'false') ABUSO_SEXUAL,
-    DECODE(
-        A.DETALLE_EVENTO,
-        'OTRA VIOLENCIA',
-        'true',
-        'false'
-    ) OTRA_VIOLENCIA,
+        'X',
+        null
+    ) ABUSO_SICOLOGICO, -- 75
+    DECODE(A.DETALLE_EVENTO, 'ABUSO SEXUAL', 'X', null) ABUSO_SEXUAL, -- 76
+    -- 77 por confirmar
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN ALCOHÓLICA',
-        'true',
-        'false'
-    ) INTOXICACION_ALCOHOLICA,
+        'X',
+        null
+    ) INTOXICACION_ALCOHOLICA, --78
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN ALIMENTARIA',
-        'true',
-        'false'
-    ) INTOXICACION_ALIMENTARIA,
+        'X',
+        null
+    ) INTOXICACION_ALIMENTARIA, -- 79
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN X DROGAS',
-        'true',
-        'false'
-    ) INTOXICACION_DROGAS,
+        'X',
+        null
+    ) INTOXICACION_DROGAS, -- 80
+    DECODE(
+        A.DETALLE_EVENTO,
+        'OTRA VIOLENCIA',
+        'X',
+        null
+    ) OTRA_VIOLENCIA,
     DECODE(
         A.DETALLE_EVENTO,
         'INHALACIÓN DE GASES',
-        'true',
-        'false'
-    ) INHALACION_GASES,
+        'X',
+        null
+    ) INHALACION_GASES,-- 81
     DECODE(
         A.DETALLE_EVENTO,
         'OTRA INTOXICACIÓN',
-        'true',
-        'false'
-    ) OTRA_INTOXICACION,
-    DECODE(A.DETALLE_EVENTO, 'ENVENAMIENTO', 'true', 'false') ENVENENAMIENTO,
-    DECODE(A.DETALLE_EVENTO, 'PICADURA', 'true', 'false') PICADURA,
-    DECODE(A.DETALLE_EVENTO, 'ANAFILAXIA', 'true', 'false') ANAFILAXIA,
+        'X',
+        null
+    ) OTRA_INTOXICACION, -- 82
+    DECODE(A.DETALLE_EVENTO, 'PICADURA', 'X', null) PICADURA, -- 83
+    DECODE(A.DETALLE_EVENTO, 'ENVENAMIENTO', 'X', null) ENVENENAMIENTO, -- 84
+    DECODE(A.DETALLE_EVENTO, 'ANAFILAXIA', 'X', null) ANAFILAXIA, --85
+    FUN_MOTIVO_ATENCION (A.CD_ATENDIMENTO) OBSERVACIONES_3, -- 86
     DECODE(
         A.DETALLE_EVENTO,
         'ALIENTO ETÍLICO',
-        'true',
-        'false'
-    ) ALIENTO_ETILICO,
-    FUN_MOTIVO_ATENCION (A.CD_ATENDIMENTO) OBSERVACIONES_3 INTO V_CAMPO54,
+        'X',
+        null
+    ) ALIENTO_ETILICO -- 87 preguntar luego
+    /* INTO V_CAMPO54,
     V_CAMPO55,
     V_CAMPO56,
     V_CAMPO57,
@@ -129,16 +132,16 @@ SELECT
     V_CAMPO76,
     V_CAMPO77,
     V_CAMPO78,
-    V_CAMPO80
+    V_CAMPO80 */
 FROM
     T_MOTIVO_ATENCION A
 WHERE
-    A.CD_ATENDIMENTO = VATENDIMENTO
+    A.CD_ATENDIMENTO = 654--VATENDIMENTO
     AND A.FECHA_REGISTRO IN (
         SELECT
             MAX(B.FECHA_REGISTRO)
         FROM
             EDITOR_CUSTOM.T_MOTIVO_ATENCION B
         WHERE
-            B.CD_ATENDIMENTO = VATENDIMENTO
+            B.CD_ATENDIMENTO = 654--VATENDIMENTO
     );

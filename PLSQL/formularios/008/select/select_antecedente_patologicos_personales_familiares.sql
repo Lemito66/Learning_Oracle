@@ -1,0 +1,149 @@
+--BEGIN
+SELECT
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'ALÉRGICOS'
+        ),
+        'false'
+    ) ALERGICOS,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'CLÍNICOS'
+        ),
+        'false'
+    ) CLINICO,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'GINECOLÓGICOS'
+        ),
+        'false'
+    ) GINECOLOGICO,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'TRAUMATOLÓGICOS'
+        ),
+        'false'
+    ) TRAUMATOLOGICO,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'PEDIÁTRICOS'
+        ),
+        'false'
+    ) PEDIATRICO,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'QUIRÚRGICOS'
+        ),
+        'false'
+    ) QUIRURGICO,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'FARMACOLÓGICOS'
+        ),
+        'false'
+    ) FARMACOLOGICO,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'HÁBITOS'
+        ),
+        'false'
+    ) HABITOS,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'FAMILIARES'
+        ),
+        'false'
+    ) FAMILIARES,
+    NVL(
+        (
+            SELECT
+                DECODE(COUNT(*), 0, 'false', 'true')
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+                AND TIPO_ANTECEDENTE = 'OTROS'
+        ),
+        'false'
+    ) OTROS,
+    FUN_ANTECEDENTES_MEDICOS (A.CD_ATENDIMENTO) ANTECEDENTES_4
+    /* INTO V_CAMPO81,
+    V_CAMPO82,
+    V_CAMPO83,
+    V_CAMPO84,
+    V_CAMPO85,
+    V_CAMPO86,
+    V_CAMPO87,
+    V_CAMPO88,
+    V_CAMPO89,
+    V_CAMPO112,
+    V_CAMPO113,
+    V_CAMPO114,
+    V_CAMPO115,
+    V_CAMPO116,
+    V_CAMPO117,
+    V_CAMPO118,
+    V_CAMPO119,
+    V_CAMPO120 */
+FROM
+    ATENDIME A
+WHERE
+    A.CD_ATENDIMENTO = 654--VATENDIMENTO;
+
+/* EXCEPTION WHEN OTHERS THEN NULL;
+
+END; */

@@ -1,5 +1,6 @@
 SELECT
-    -- Falta 58, 59, 60
+    -- Falta 58, 59, 60 Los puse en otra t_emergencia en datos de la atención
+    --61 se encuentra en el campos paciente atención
     DECODE(
         A.DETALLE_EVENTO,
         'ACCIDENTE DE TRÁNSITO',
@@ -60,7 +61,7 @@ SELECT
         null
     ) ABUSO_SICOLOGICO, -- 75
     DECODE(A.DETALLE_EVENTO, 'ABUSO SEXUAL', 'X', null) ABUSO_SEXUAL, -- 76
-    -- 77 por confirmar
+    -- 77 en campos paciente atención
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN ALCOHÓLICA',

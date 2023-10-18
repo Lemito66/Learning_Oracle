@@ -3,122 +3,122 @@ SELECT
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'ALÉRGICOS'
         ),
-        'false'
+        null
     ) ALERGICOS,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'CLÍNICOS'
         ),
-        'false'
+        null
     ) CLINICO,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'GINECOLÓGICOS'
         ),
-        'false'
+        null
     ) GINECOLOGICO,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'TRAUMATOLÓGICOS'
         ),
-        'false'
+        null
     ) TRAUMATOLOGICO,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'PEDIÁTRICOS'
         ),
-        'false'
+        null
     ) PEDIATRICO,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'QUIRÚRGICOS'
         ),
-        'false'
+        null
     ) QUIRURGICO,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'FARMACOLÓGICOS'
         ),
-        'false'
+        null
     ) FARMACOLOGICO,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'HÁBITOS'
         ),
-        'false'
+        null
     ) HABITOS,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'FAMILIARES'
         ),
-        'false'
+        null
     ) FAMILIARES,
     NVL(
         (
             SELECT
-                DECODE(COUNT(*), 0, 'false', 'true')
+                DECODE(COUNT(*), 0, null, 'X')
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
                 AND TIPO_ANTECEDENTE = 'OTROS'
         ),
-        'false'
+        null
     ) OTROS,
     FUN_ANTECEDENTES_MEDICOS (A.CD_ATENDIMENTO) ANTECEDENTES_4
     /* INTO V_CAMPO81,

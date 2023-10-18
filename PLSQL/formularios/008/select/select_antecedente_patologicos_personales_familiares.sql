@@ -1,34 +1,17 @@
 --BEGIN
+-- No olvidarnos poner el control del firmado. Eso se realizará luego
 SELECT
     CASE
-    WHEN (
-      SELECT
-        DECODE(COUNT(*), 0, 'X', null)
-      FROM
-        T_ANTECEDENTE_PERS_FAM
-      WHERE
-        CD_ATENDIMENTO = A.CD_ATENDIMENTO
-        AND TIPO_ANTECEDENTE = 'ALÉRGICOS'
-    ) IS NULL THEN 'X'
-    and (
-      SELECT
-        DECODE(COUNT(*), 0, 'X', null)
-      FROM
-        T_ANTECEDENTE_PERS_FAM
-      WHERE
-        CD_ATENDIMENTO = A.CD_ATENDIMENTO
-        AND TIPO_ANTECEDENTE = 'CLÍNICOS'
-    ) IS NULL THEN 'X'
-    and (
-      SELECT
-        DECODE(COUNT(*), 0, 'X', null)
-      FROM
-        T_ANTECEDENTE_PERS_FAM
-      WHERE
-        CD_ATENDIMENTO = A.CD_ATENDIMENTO
-        AND TIPO_ANTECEDENTE = 'GINECOLÓGICOS'
-    ) IS NULL THEN 'X'
-    ELSE NULL
+        WHEN (
+            SELECT
+                COUNT(*) 
+            FROM
+                T_ANTECEDENTE_PERS_FAM
+            WHERE
+                CD_ATENDIMENTO = A.CD_ATENDIMENTO
+        ) = 0 THEN 'X'
+        ELSE NULL
+    END NO_APLICA,
     NVL(
         (
             SELECT
@@ -171,8 +154,7 @@ SELECT
 FROM
     ATENDIME A
 WHERE
-    A.CD_ATENDIMENTO = 654--VATENDIMENTO;
-
-/* EXCEPTION WHEN OTHERS THEN NULL;
-
-END; */
+    A.CD_ATENDIMENTO = 654 --VATENDIMENTO;
+    /* EXCEPTION WHEN OTHERS THEN NULL;
+    
+    END; */

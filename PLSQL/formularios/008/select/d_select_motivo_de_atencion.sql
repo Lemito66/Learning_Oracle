@@ -1,6 +1,6 @@
 SELECT
     -- Falta 58, 59, 60 Los puse en otra t_emergencia en datos de la atención
-    --61 se encuentra en el campos paciente atención
+    -- 61 se encuentra en el campos paciente atención
     DECODE(
         A.DETALLE_EVENTO,
         'ACCIDENTE DE TRÁNSITO',
@@ -108,14 +108,7 @@ SELECT
         'X',
         null
     ) ALIENTO_ETILICO -- 87 preguntar luego
-    /* INTO V_CAMPO54,
-    V_CAMPO55,
-    V_CAMPO56,
-    V_CAMPO57,
-    V_CAMPO58,
-    V_CAMPO59,
-    V_CAMPO60,
-    V_CAMPO61,
+    /* INTO 
     V_CAMPO62,
     V_CAMPO63,
     V_CAMPO64,
@@ -131,18 +124,26 @@ SELECT
     V_CAMPO74,
     V_CAMPO75,
     V_CAMPO76,
-    V_CAMPO77,
     V_CAMPO78,
-    V_CAMPO80 */
+    V_CAMPO79,
+    V_CAMPO80,
+    V_CAMPO81,
+    V_CAMPO82,
+    V_CAMPO83,
+    V_CAMPO84,
+    V_CAMPO85,
+    V_CAMPO86,
+    V_CAMPO87
+    */
 FROM
     T_MOTIVO_ATENCION A
 WHERE
-    A.CD_ATENDIMENTO = 654--VATENDIMENTO
+    A.CD_ATENDIMENTO = VATENDIMENTO--654--VATENDIMENTO
     AND A.FECHA_REGISTRO IN (
         SELECT
             MAX(B.FECHA_REGISTRO)
         FROM
             EDITOR_CUSTOM.T_MOTIVO_ATENCION B
         WHERE
-            B.CD_ATENDIMENTO = 654--VATENDIMENTO
+            B.CD_ATENDIMENTO = VATENDIMENTO--654 --VATENDIMENTO
     );

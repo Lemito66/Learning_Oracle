@@ -1065,169 +1065,198 @@ BEGIN
 SELECT
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            CASE
+                WHEN PRESCRIPCION = 0 THEN 'X'
+                ELSE NULL
+            END NO_APLICA_EXAMEN_COMPLEMEN
+        FROM
+            (
+                SELECT
+                    COUNT(*) PRESCRIPCION
+                FROM
+                    pre_med a,
+                    itpre_med b,
+                    tip_presc c,
+                    pw_documento_clinico d
+                WHERE
+                    a.cd_pre_med = b.cd_pre_med
+                    AND b.cd_tip_presc = c.cd_tip_presc
+                    AND a.cd_documento_clinico = d.cd_documento_clinico
+                    AND d.tp_status = 'FECHADO'
+                    AND c.cd_tip_esq IN ('PME', 'EXL', 'EXI')
+                    AND a.cd_atendimento = VATENDIMENTO-- VATENDIMENTO
+                    AND NVL(b.sn_cancelado, 'N') = 'N'
+            )
+    ) NO_APLICA_EXAMEN_COMPLEMEN, --178
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
         FROM
             PRE_MED A,
             ITPRE_MED B
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO --VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_ESQ IN ('EXL')
             AND B.CD_TIP_PRESC IN (183, 184)
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) BIOMETRIA,
-    'false' QUIMICA_SANGUINEA,
+    ) BIOMETRIA, -- 154
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            DECODE(COUNT(*), 0, null, 'X')
         FROM
             PRE_MED A,
             ITPRE_MED B
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO --VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXL')
+            AND B.CD_TIP_PRESC IN (376)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) UROANALISIS, -- 155
+    null QUIMICA_SANGUINEA, -- 156
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X') VALOR
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXL')
+            AND B.CD_TIP_PRESC IN (306)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) ELECTROLITOS, -- 157
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_ESQ IN ('EXL')
             AND B.CD_TIP_PRESC IN (315, 316)
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) GASOMETRIA,
+    ) GASOMETRIA, --158
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            DECODE(COUNT(*), 0, null, 'X')
         FROM
             PRE_MED A,
             ITPRE_MED B
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXI')
+            AND B.CD_TIP_PRESC IN (678, 677, 679, 676)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) ELECTROCARDIOGRAMA, -- 159
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_ESQ IN ('PME')
             AND B.CD_TIP_PRESC IN (1587, 1588)
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) ENDOSCOPIA,
+    ) ENDOSCOPIA, -- 160
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            DECODE(COUNT(*), 0, null, 'X') VALOR
         FROM
             PRE_MED A,
             ITPRE_MED B
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXI')
+            AND B.CD_TIP_PRESC IN (631, 635, 561, 562, 563)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) RX_TORAX, -- 161
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_ESQ IN ('EXI')
             AND B.CD_TIP_PRESC IN (632, 564, 565)
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) RX_ABDOMEN,
+    ) RX_ABDOMEN, -- 162
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXI')
+            AND B.CD_TIP_PRESC IN (627, 17480, 586, 963, 17479, 17474)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) RX_OSEA, -- 163
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXI')
+            AND B.CD_TIP_PRESC IN (890, 891, 920)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) ECOGRAFIA_ABDOMEN, -- 164
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PRE_MED A,
+            ITPRE_MED B
+        WHERE
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND A.CD_PRE_MED = B.CD_PRE_MED
+            AND B.CD_TIP_ESQ IN ('EXI')
+            AND B.CD_TIP_PRESC IN (893)
+            AND NVL(B.SN_CANCELADO, 'N') = 'N'
+    ) ECOGRAFIA_PELVICA, -- 165
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
         FROM
             PRE_MED A,
             ITPRE_MED B,
             TIP_PRESC C,
             EXA_RX D
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_ESQ = 'EXI'
             AND B.CD_TIP_PRESC = C.CD_TIP_PRESC
             AND C.CD_EXA_RX = D.CD_EXA_RX
             AND D.CD_MODALIDADE_EXAME = 2
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) TOMOGRAFIA,
+    ) TOMOGRAFIA, -- 166
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            DECODE(COUNT(*), 0, null, 'X')
         FROM
             PRE_MED A,
             ITPRE_MED B
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXI')
-            AND B.CD_TIP_PRESC IN (893)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) ECOGRAFIA,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
-        FROM
-            PAR_MED
-        WHERE
-            CD_ATENDIMENTO = VATENDIMENTO
-            AND DS_SOLICITACAO <> 'Cancelado'
-    ) INTERCONSULTA,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXL')
-            AND B.CD_TIP_PRESC IN (376)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) UROANALISIS,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true') VALOR
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXL')
-            AND B.CD_TIP_PRESC IN (306)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) ELECTROLITOS,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXI')
-            AND B.CD_TIP_PRESC IN (678, 677, 679, 676)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) ELECTROCARDIOGRAMA,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true') VALOR
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXI')
-            AND B.CD_TIP_PRESC IN (631, 635, 561, 562, 563)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) RX_TORAX,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXI')
-            AND B.CD_TIP_PRESC IN (627, 17480, 586, 963, 17479, 17474)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) RX_OSEA,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_ESQ IN ('EXI')
             AND B.CD_TIP_PRESC IN (
@@ -1343,28 +1372,24 @@ SELECT
                 723
             )
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) RESONANCIA,
+    ) RESONANCIA, -- 167
     (
         SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
+            DECODE(COUNT(*), 0, null, 'X')
+        FROM
+            PAR_MED
+        WHERE
+            CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
+            AND DS_SOLICITACAO <> 'Cancelado'
+    ) INTERCONSULTA, -- 168
+    (
+        SELECT
+            DECODE(COUNT(*), 0, null, 'X')
         FROM
             PRE_MED A,
             ITPRE_MED B
         WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
-            AND A.CD_PRE_MED = B.CD_PRE_MED
-            AND B.CD_TIP_ESQ IN ('EXI')
-            AND B.CD_TIP_PRESC IN (890, 891, 920)
-            AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) ECOGRAFIA_ABDOMEN,
-    (
-        SELECT
-            DECODE(COUNT(*), 0, 'false', 'true')
-        FROM
-            PRE_MED A,
-            ITPRE_MED B
-        WHERE
-            A.CD_ATENDIMENTO = VATENDIMENTO
+            A.CD_ATENDIMENTO = VATENDIMENTO -- VATENDIMENTO
             AND A.CD_PRE_MED = B.CD_PRE_MED
             AND B.CD_TIP_PRESC NOT IN (
                 183,
@@ -1586,8 +1611,14 @@ SELECT
                 920
             )
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
-    ) OTROS,
-    FUN_OBS_EXAMENES (10090) INTO V_CAMPO157,
+    ) OTROS, -- 169
+    FUN_OBS_EXAMENES (10090) OBSERVACIONES_EXAMENES --170
+    INTO 
+    V_CAMPO178, 
+    V_CAMPO154,
+    V_CAMPO155,
+    V_CAMPO156,
+    V_CAMPO157,
     V_CAMPO158,
     V_CAMPO159,
     V_CAMPO160,
@@ -1600,10 +1631,7 @@ SELECT
     V_CAMPO167,
     V_CAMPO168,
     V_CAMPO169,
-    V_CAMPO170,
-    V_CAMPO171,
-    V_CAMPO172,
-    V_CAMPO175
+    V_CAMPO170
 FROM
     DUAL;
 

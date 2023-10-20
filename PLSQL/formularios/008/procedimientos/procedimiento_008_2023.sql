@@ -83,7 +83,7 @@ V_CAMPO41 VARCHAR2(20);
 
 V_CAMPO42 VARCHAR2(20);
 
-V_CAMPO43 VARCHAR2(10);
+--V_CAMPO43 VARCHAR2(10);
 
 --V_CAMPO44 VARCHAR2(10);
 
@@ -1037,12 +1037,12 @@ SELECT
         'X',
         null
     ) INTOXICACION_DROGAS, -- 80
-    DECODE(
+    /*DECODE(
         A.DETALLE_EVENTO,
         'OTRA VIOLENCIA',
         'X',
         null
-    ) OTRA_VIOLENCIA,
+    ) OTRA_VIOLENCIA, */
     DECODE(
         A.DETALLE_EVENTO,
         'INHALACIÓN DE GASES',
@@ -1091,7 +1091,6 @@ SELECT
     V_CAMPO85,
     V_CAMPO86,
     V_CAMPO87
-
 FROM
     T_MOTIVO_ATENCION A
 WHERE
@@ -1926,8 +1925,8 @@ VALUES
         V_CAMPO40,
         V_CAMPO41,
         V_CAMPO42,
-        V_CAMPO43,
-        V_CAMPO44,
+        --V_CAMPO43,
+        --V_CAMPO44,
         V_CAMPO45,
         V_CAMPO46,
         V_CAMPO47,

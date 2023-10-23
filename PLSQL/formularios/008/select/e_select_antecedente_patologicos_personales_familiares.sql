@@ -1,10 +1,10 @@
---BEGIN
--- No olvidarnos poner el control del firmado. Eso se realizará luego
+-- Antecedentes patologicos personales y familiares
+BEGIN --No olvidarnos poner el control del firmado.Eso se realizará luego
 SELECT
     CASE
         WHEN (
             SELECT
-                COUNT(*) 
+                COUNT(*)
             FROM
                 T_ANTECEDENTE_PERS_FAM
             WHERE
@@ -122,28 +122,24 @@ SELECT
         'false'
     ) OTROS, -- 98
     FUN_ANTECEDENTES_MEDICOS (A.CD_ATENDIMENTO) ANTECEDENTES_4 -- 99
-    /* INTO V_CAMPO81,
-    V_CAMPO82,
-    V_CAMPO83,
-    V_CAMPO84,
-    V_CAMPO85,
-    V_CAMPO86,
-    V_CAMPO87,
-    V_CAMPO88,
+    INTO V_CAMPO88,
     V_CAMPO89,
-    V_CAMPO112,
-    V_CAMPO113,
-    V_CAMPO114,
-    V_CAMPO115,
-    V_CAMPO116,
-    V_CAMPO117,
-    V_CAMPO118,
-    V_CAMPO119,
-    V_CAMPO120 */
+    V_CAMPO90,
+    V_CAMPO91,
+    V_CAMPO92,
+    V_CAMPO93,
+    V_CAMPO94,
+    V_CAMPO95,
+    V_CAMPO96,
+    V_CAMPO97,
+    V_CAMPO98,
+    V_CAMPO99
 FROM
     ATENDIME A
 WHERE
-    A.CD_ATENDIMENTO = VATENDIMENTO --VATENDIMENTO;
-/* EXCEPTION WHEN OTHERS THEN NULL;
+    A.CD_ATENDIMENTO = VATENDIMENTO;
 
-END; */
+--VATENDIMENTO;
+EXCEPTION WHEN OTHERS THEN NULL;
+
+END;

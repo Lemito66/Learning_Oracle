@@ -12,7 +12,8 @@ SELECT
         ) = 0 THEN 'X'
         ELSE NULL
     END NO_APLICA,
-    NVL(
+    'true' ALERGICOS,
+    /* NVL(
         (
             SELECT
                 DECODE(COUNT(*), 0, null, 'X')
@@ -23,7 +24,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'ALÉRGICOS'
         ),
         null
-    ) ALERGICOS,
+    ) ALERGICOS, */
     NVL(
         (
             SELECT

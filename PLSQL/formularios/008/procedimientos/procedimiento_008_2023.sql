@@ -1066,7 +1066,7 @@ SELECT
         A.DETALLE_EVENTO,
         'ALIENTO ETÍLICO',
         'true',
-        null
+        'false'
     ) ALIENTO_ETILICO -- 87 preguntar luego
     INTO 
     V_CAMPO62,

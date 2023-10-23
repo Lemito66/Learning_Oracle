@@ -1,5 +1,4 @@
-CREATE
-OR REPLACE PROCEDURE PRC_INSERTA_T_TMP_008_2023 (VATENDIMENTO NUMBER) IS V_CAMPO1 VARCHAR2(50);
+CREATE OR REPLACE PROCEDURE PRC_INSERTA_T_TMP_008_2023 (VATENDIMENTO NUMBER) IS V_CAMPO1 VARCHAR2(50);
 
 V_CAMPO2 VARCHAR2(50);
 
@@ -361,7 +360,7 @@ BEGIN
 -- ELIMINA EL REGISTRO EXISTENTE
 BEGIN DELETE T_TMP_008
 WHERE
-    CAMPO7 = VATENDIMENTO;
+    CAMPO5 = VATENDIMENTO;
 
 EXCEPTION WHEN OTHERS THEN NULL;
 
@@ -405,7 +404,7 @@ SELECT
         'U',
         'UNION LIBRE'
     ) ESTADO_CIVIL_PACIENTE, -- 13
-    DECODE(E.TP_SEXO, 'M', 'MASCULINO', ' FEMENINO') SEXO_PACIENTE, -- 14
+    DECODE(E.TP_SEXO, 'M', 'MASCULINO', 'FEMENINO') SEXO_PACIENTE, -- 14
     E.NR_FONE TELEFONO_FIJO, -- 15
     E.NR_CELULAR TELEFONO_CELULAR, -- 16
     TO_CHAR(E.DT_NASCIMENTO, 'dd/mm/yyyy') FECHA_NACIMIENTO_PACIENTE, -- 17
@@ -457,8 +456,8 @@ SELECT
     E.DS_TRABALHO EMPRESA_TRABAJO_PACIENTE, -- 29
     J.NM_PROFISSAO OCUPACION_PACIENTE, -- 30
     K.NM_CONVENIO CONVENIO_PACIENTE, -- 31
-    G.NM_ESTADO PROVINCIA_PACIENTE, -- 32
-    F.NM_CIDADE CANTON_PACIENTE, -- 33
+    R.NM_ESTADO PROVINCIA_PACIENTE, -- 32
+    Q.NM_CIDADE CANTON_PACIENTE, -- 33
     E.NM_BAIRRO PARROQUIA_PACIENTE, -- 34
     NULL BARRIO_PACIENTE, -- 35
     E.DS_ENDERECO DIRECCION_RESIDENCIAL_PACIENTE, -- 36
@@ -469,11 +468,11 @@ SELECT
     M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 41
     O.DS_MEIO_TRANSPORTE LLEGADA_PACIENTE, -- 42
     -- 45 No hay que traer este campo
-    null INSTITUCIONENTREGA_AL_PACIENTE, -- 46
+    L.DS_LOC_PROCED ENTREGA_PACIENTE, -- 46
     M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 47
     E.TP_SANGUINEO GRUPO_SANGUINEO_PACIENTE, -- 57
-    DECODE(A.SN_CUSTODIA_POLICIAL, 'N', null, 'X') CUSTODIA_POLICIAL, -- 61      
-    DECODE(A.SN_NOTIFICAR_POLICIA, 'N', null, 'X') NOTIFICACION_POLICIA -- 77   
+    DECODE(A.SN_CUSTODIA_POLICIAL, 'N', 'NO', 'SI') CUSTODIA_POLICIAL, -- 61      
+    DECODE(A.SN_NOTIFICAR_POLICIA, 'N', 'NO', 'SI') NOTIFICACION_POLICIA -- 77   
     INTO 
     V_CAMPO1,
     V_CAMPO2,
@@ -538,7 +537,9 @@ FROM
     RESPONSA M, -- Responsable
     TIP_PAREN N, -- tipo de parentesco, madre,padre,chofe,amigo, etc.
     MEIO_TRANSPORTE O, -- En que medio de transporte llego el paciente.
-    USUARIOS P -- tabla de usuarios
+    USUARIOS P, -- tabla de usuarios
+    CIDADE Q,
+    ESTADO R -- Ciudades
     --T_EMERGENCIA P -- tabla de emergencia
 WHERE
     A.CD_MULTI_EMPRESA = B.CD_MULTI_EMPRESA (+)
@@ -546,7 +547,7 @@ WHERE
     AND A.CD_ATENDIMENTO = VATENDIMENTO--96370--96372--98699
     AND C.CD_ESTADO = D.CD_ESTADO (+)
     AND A.CD_PACIENTE = E.CD_PACIENTE (+)
-    AND E.CD_CIDADE = F.CD_CIDADE (+)
+    AND E.CD_NATURALIDADE = F.CD_CIDADE (+)
     AND F.CD_ESTADO = G.CD_ESTADO (+)
     AND E.CD_CIDADANIA = H.CD_CIDADANIA (+)
     AND E.CD_GRAU_INS = I.CD_GRAU_INS (+)
@@ -556,7 +557,9 @@ WHERE
     AND A.CD_ATENDIMENTO = M.CD_ATENDIMENTO (+)
     AND M.CD_TIP_PAREN = N.CD_TIP_PAREN (+)
     AND A.CD_MEIO_TRANSPORTE = O.CD_MEIO_TRANSPORTE (+)
-    AND A.NM_USUARIO = p.cd_usuario;
+    AND A.NM_USUARIO = p.cd_usuario
+    AND E.CD_CIDADE = Q.CD_CIDADE (+)
+    AND Q.CD_ESTADO = R.CD_ESTADO (+);
 
 EXCEPTION WHEN OTHERS THEN NULL;
 
@@ -961,108 +964,108 @@ SELECT
     DECODE(
         A.DETALLE_EVENTO,
         'ACCIDENTE DE TRÁNSITO',
-        'X',
-        null
+        'true',
+        'false'
     ) ACCIDENTE_TRANSITO, -- 62
-    DECODE(A.DETALLE_EVENTO, 'CAÍDA', 'X', null) CAIDA, --63
-    DECODE(A.DETALLE_EVENTO, 'QUEMADURA', 'X', null) QUEMADURA, --64
-    DECODE(A.DETALLE_EVENTO, 'MORDEDURA', 'X', null) MORDEDURA, -- 65
-    DECODE(A.DETALLE_EVENTO, 'AHOGAMIENTO', 'X', null) AHOGAMIENTO, -- 66
+    DECODE(A.DETALLE_EVENTO, 'CAÍDA', 'true', 'false') CAIDA, --63
+    DECODE(A.DETALLE_EVENTO, 'QUEMADURA', 'true', 'false') QUEMADURA, --64
+    DECODE(A.DETALLE_EVENTO, 'MORDEDURA', 'true', 'false') MORDEDURA, -- 65
+    DECODE(A.DETALLE_EVENTO, 'AHOGAMIENTO', 'true', 'false') AHOGAMIENTO, -- 66
     DECODE(
         A.DETALLE_EVENTO,
         'CUERPO EXTRAÑO',
-        'X',
-        null
+        'true',
+        'false'
     ) CUERPO_EXTRANIO, -- 67
     DECODE(
         A.DETALLE_EVENTO,
         'APLASTAMIENTO',
-        'X',
-        null
+        'true',
+        'false'
     ) APLASTAMIENTO, -- 68
     DECODE(
         A.DETALLE_EVENTO,
         'OTRO ACCIDENTE',
-        'X',
-        null
+        'true',
+        'false'
     ) OTRO_ACCIDENTE, --69
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA X ARMA DE FUEGO',
-        'X',
-        null
+        'true',
+        'false'
     ) ARMA_FUEGO, -- 70
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA X ARMA C.',
-        'X',
-        null
+        'true',
+        'false'
     ) ARMA_C, -- 71
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA X RIÑA',
-        'X',
-        null
+        'true',
+        'false'
     ) VIOLENCIA_RINIA, -- 72
     DECODE(
         A.DETALLE_EVENTO,
         'VIOLENCIA FAMILIAR',
-        'X',
-        null
+        'true',
+        'false'
     ) VIOLENCIA_FAMILIAR, --73
-    DECODE(A.DETALLE_EVENTO, 'ABUSO FÍSICO', 'X', null) ABUSO_FISICO, -- 74
+    DECODE(A.DETALLE_EVENTO, 'ABUSO FÍSICO', 'true', 'false') ABUSO_FISICO, -- 74
     DECODE(
         A.DETALLE_EVENTO,
         'ABUSO PSICOLÓGICO',
-        'X',
-        null
+        'true',
+        'false'
     ) ABUSO_SICOLOGICO, -- 75
-    DECODE(A.DETALLE_EVENTO, 'ABUSO SEXUAL', 'X', null) ABUSO_SEXUAL, -- 76
+    DECODE(A.DETALLE_EVENTO, 'ABUSO SEXUAL', 'true', 'false') ABUSO_SEXUAL, -- 76
     -- 77 en campos paciente atención
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN ALCOHÓLICA',
-        'X',
-        null
+        'true',
+        'false'
     ) INTOXICACION_ALCOHOLICA, --78
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN ALIMENTARIA',
-        'X',
-        null
+        'true',
+        'false'
     ) INTOXICACION_ALIMENTARIA, -- 79
     DECODE(
         A.DETALLE_EVENTO,
         'INTOXICACIÓN X DROGAS',
-        'X',
-        null
+        'true',
+        'false'
     ) INTOXICACION_DROGAS, -- 80
     /*DECODE(
         A.DETALLE_EVENTO,
         'OTRA VIOLENCIA',
         'X',
-        null
+        'false'
     ) OTRA_VIOLENCIA, */
     DECODE(
         A.DETALLE_EVENTO,
         'INHALACIÓN DE GASES',
-        'X',
-        null
+        'true',
+        'false'
     ) INHALACION_GASES,-- 81
     DECODE(
         A.DETALLE_EVENTO,
         'OTRA INTOXICACIÓN',
-        'X',
-        null
+        'true',
+        'false'
     ) OTRA_INTOXICACION, -- 82
-    DECODE(A.DETALLE_EVENTO, 'PICADURA', 'X', null) PICADURA, -- 83
-    DECODE(A.DETALLE_EVENTO, 'ENVENAMIENTO', 'X', null) ENVENENAMIENTO, -- 84
-    DECODE(A.DETALLE_EVENTO, 'ANAFILAXIA', 'X', null) ANAFILAXIA, --85
+    DECODE(A.DETALLE_EVENTO, 'PICADURA', 'true', 'false') PICADURA, -- 83
+    DECODE(A.DETALLE_EVENTO, 'ENVENAMIENTO', 'true', 'false') ENVENENAMIENTO, -- 84
+    DECODE(A.DETALLE_EVENTO, 'ANAFILAXIA', 'true', 'false') ANAFILAXIA, --85
     FUN_MOTIVO_ATENCION (A.CD_ATENDIMENTO) OBSERVACIONES_3, -- 86
     DECODE(
         A.DETALLE_EVENTO,
         'ALIENTO ETÍLICO',
-        'X',
+        'true',
         null
     ) ALIENTO_ETILICO -- 87 preguntar luego
     INTO 

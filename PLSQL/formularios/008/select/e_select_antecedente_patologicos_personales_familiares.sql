@@ -11,20 +11,8 @@ SELECT
                 CD_ATENDIMENTO = A.CD_ATENDIMENTO
         ) = 0 THEN 'X'
         ELSE NULL
-    END NO_APLICA,
-    'true' ALERGICOS,
-    /* NVL(
-        (
-            SELECT
-                DECODE(COUNT(*), 0, null, 'X')
-            FROM
-                T_ANTECEDENTE_PERS_FAM
-            WHERE
-                CD_ATENDIMENTO = A.CD_ATENDIMENTO
-                AND TIPO_ANTECEDENTE = 'ALÉRGICOS'
-        ),
-        null
-    ) ALERGICOS, */
+    END NO_APLICA, -- 88
+    'true' ALERGICOS, -- 89
     NVL(
         (
             SELECT
@@ -36,7 +24,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'CLÍNICOS'
         ),
         null
-    ) CLINICO,
+    ) CLINICO, -- 90
     NVL(
         (
             SELECT
@@ -48,7 +36,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'GINECOLÓGICOS'
         ),
         null
-    ) GINECOLOGICO,
+    ) GINECOLOGICO, -- 91
     NVL(
         (
             SELECT
@@ -60,7 +48,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'TRAUMATOLÓGICOS'
         ),
         null
-    ) TRAUMATOLOGICO,
+    ) TRAUMATOLOGICO, -- 92
     NVL(
         (
             SELECT
@@ -72,7 +60,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'PEDIÁTRICOS'
         ),
         null
-    ) PEDIATRICO,
+    ) PEDIATRICO, -- 93
     NVL(
         (
             SELECT
@@ -84,7 +72,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'QUIRÚRGICOS'
         ),
         null
-    ) QUIRURGICO,
+    ) QUIRURGICO, -- 94
     NVL(
         (
             SELECT
@@ -96,7 +84,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'FARMACOLÓGICOS'
         ),
         null
-    ) FARMACOLOGICO,
+    ) FARMACOLOGICO, -- 95
     NVL(
         (
             SELECT
@@ -108,7 +96,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'HÁBITOS'
         ),
         null
-    ) HABITOS,
+    ) HABITOS, -- 96
     NVL(
         (
             SELECT
@@ -120,7 +108,7 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'FAMILIARES'
         ),
         null
-    ) FAMILIARES,
+    ) FAMILIARES, -- 97
     NVL(
         (
             SELECT
@@ -132,8 +120,8 @@ SELECT
                 AND TIPO_ANTECEDENTE = 'OTROS'
         ),
         null
-    ) OTROS,
-    FUN_ANTECEDENTES_MEDICOS (A.CD_ATENDIMENTO) ANTECEDENTES_4
+    ) OTROS, -- 98
+    FUN_ANTECEDENTES_MEDICOS (A.CD_ATENDIMENTO) ANTECEDENTES_4 -- 99
     /* INTO V_CAMPO81,
     V_CAMPO82,
     V_CAMPO83,

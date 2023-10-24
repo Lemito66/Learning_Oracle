@@ -1260,8 +1260,8 @@ SELECT
     (
         SELECT
             CASE
-                WHEN PRESCRIPCION = 0 THEN 'X'
-                ELSE NULL
+                WHEN PRESCRIPCION = 0 THEN 'true'
+                ELSE 'false'
             END NO_APLICA_EXAMEN_COMPLEMEN
         FROM
             (
@@ -1284,7 +1284,7 @@ SELECT
     ) NO_APLICA_EXAMEN_COMPLEMEN, --178
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1297,7 +1297,7 @@ SELECT
     ) BIOMETRIA, -- 154
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1308,10 +1308,10 @@ SELECT
             AND B.CD_TIP_PRESC IN (376)
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
     ) UROANALISIS, -- 155
-    null QUIMICA_SANGUINEA, -- 156
+    'false' QUIMICA_SANGUINEA, -- 156
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X') VALOR
+            DECODE(COUNT(*), 0, 'false', 'true') VALOR
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1324,7 +1324,7 @@ SELECT
     ) ELECTROLITOS, -- 157
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1337,7 +1337,7 @@ SELECT
     ) GASOMETRIA, --158
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1350,7 +1350,7 @@ SELECT
     ) ELECTROCARDIOGRAMA, -- 159
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1363,7 +1363,7 @@ SELECT
     ) ENDOSCOPIA, -- 160
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X') VALOR
+            DECODE(COUNT(*), 0, 'false', 'true') VALOR
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1376,7 +1376,7 @@ SELECT
     ) RX_TORAX, -- 161
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1389,7 +1389,7 @@ SELECT
     ) RX_ABDOMEN, -- 162
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1402,7 +1402,7 @@ SELECT
     ) RX_OSEA, -- 163
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1415,7 +1415,7 @@ SELECT
     ) ECOGRAFIA_ABDOMEN, -- 164
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1428,7 +1428,7 @@ SELECT
     ) ECOGRAFIA_PELVICA, -- 165
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B,
@@ -1445,7 +1445,7 @@ SELECT
     ) TOMOGRAFIA, -- 166
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1569,7 +1569,7 @@ SELECT
     ) RESONANCIA, -- 167
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PAR_MED
         WHERE
@@ -1578,7 +1578,7 @@ SELECT
     ) INTERCONSULTA, -- 168
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B

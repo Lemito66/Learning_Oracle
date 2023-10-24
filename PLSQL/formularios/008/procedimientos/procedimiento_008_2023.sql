@@ -669,8 +669,8 @@ SELECT
     (
         select
             case
-                when count(*) = 0 then 'X'
-                else null
+                when count(*) = 0 then 'true'
+                else 'false'
             end
         from
             dbamv.coleta_sinal_vital
@@ -771,7 +771,7 @@ BEGIN
 SELECT
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -781,7 +781,7 @@ SELECT
     ) PIEL_FANERAS, -- 116
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -791,7 +791,7 @@ SELECT
     ) CABEZA, -- 117
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -801,7 +801,7 @@ SELECT
     ) OJOS, -- 118
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -811,7 +811,7 @@ SELECT
     ) OIDOS, -- 119
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -821,7 +821,7 @@ SELECT
     ) NARIZ, -- 120
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -831,7 +831,7 @@ SELECT
     ) BOCA, -- 121
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -841,7 +841,7 @@ SELECT
     ) ORO_FARINGE, -- 122
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -851,7 +851,7 @@ SELECT
     ) CUELLO, -- 123
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -861,7 +861,7 @@ SELECT
     ) AXILAS_MAMAS, -- 124
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -871,7 +871,7 @@ SELECT
     )TORAX, -- 125
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -881,7 +881,7 @@ SELECT
     ) ABDOMEN, -- 126
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -891,7 +891,7 @@ SELECT
     ) COLUMNA_VERTEBRAL, -- 127
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -901,7 +901,7 @@ SELECT
     ) INGRE_PERINE, -- 128
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -911,7 +911,7 @@ SELECT
     ) MIEMBROS_SUPERIORES, -- 129
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -922,7 +922,7 @@ SELECT
     FUN_EXAMEN_FISICO_008 (VATENDIMENTO)  OBSERVACIONES_EXAMEN_FISICO, -- 131 --VATENDIMENTO
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            A.observaciones_examen_fisico
             
         FROM
             T_EXAMEN_FISICO A

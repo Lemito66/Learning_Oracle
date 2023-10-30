@@ -589,9 +589,9 @@ END;
 -- DATOS DE LA ATENCION
 BEGIN
 SELECT
-    DECODE(A.ESTABLE, 'true', 'X', null) ESTABLE, -- 49
-    DECODE(A.INESTABLE, 'true', 'X', null) INESTABLE, -- 50
-    DECODE(A.Fallecido, 'true', 'X', null) FALLECIDO, -- 51
+    DECODE(A.ESTABLE, 'true', 'true', 'false') ESTABLE, -- 49
+    DECODE(A.INESTABLE, 'true', 'true', 'false') INESTABLE, -- 50
+    DECODE(A.Fallecido, 'true', 'true', 'false') FALLECIDO, -- 51
     A.DESCRIPCION_OTRO_MOTIVO DESCRIPCION_OTRO_MOTIVO, -- 52
     DECODE(A.TIPO_MOTIVO_ATENCION, 'TRAUMA', 'true', 'false') TRAUMA_X, -- 53
     DECODE(

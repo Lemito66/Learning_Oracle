@@ -589,9 +589,9 @@ END;
 -- DATOS DE LA ATENCION
 BEGIN
 SELECT
-    DECODE(A.ESTABLE, 'true', 'X', null) ESTABLE, -- 49
-    DECODE(A.INESTABLE, 'true', 'X', null) INESTABLE, -- 50
-    DECODE(A.Fallecido, 'true', 'X', null) FALLECIDO, -- 51
+    DECODE(A.ESTABLE, 'true', 'true', 'false') ESTABLE, -- 49
+    DECODE(A.INESTABLE, 'true', 'true', 'false') INESTABLE, -- 50
+    DECODE(A.Fallecido, 'true', 'true', 'false') FALLECIDO, -- 51
     A.DESCRIPCION_OTRO_MOTIVO DESCRIPCION_OTRO_MOTIVO, -- 52
     DECODE(A.TIPO_MOTIVO_ATENCION, 'TRAUMA', 'true', 'false') TRAUMA_X, -- 53
     DECODE(
@@ -634,8 +634,8 @@ SELECT
         AND A.SANGRADO_VAGINAL IS NULL
         AND A.CONTRACCIONES IS NULL
         AND A.score_mama IS NULL
-        AND A.OBSERVACIONES_OTRO_EXAMEN IS NULL THEN 'X'
-        ELSE NULL
+        AND A.OBSERVACIONES_OTRO_EXAMEN IS NULL THEN 'true'
+        ELSE 'false'
     END NO_APLICA, -- 133
     A.GESTAS, -- 134
     A.PARTOS, -- 135
@@ -669,8 +669,8 @@ SELECT
     (
         select
             case
-                when count(*) = 0 then 'X'
-                else null
+                when count(*) = 0 then 'true'
+                else 'false'
             end
         from
             dbamv.coleta_sinal_vital
@@ -771,7 +771,7 @@ BEGIN
 SELECT
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -781,7 +781,7 @@ SELECT
     ) PIEL_FANERAS, -- 116
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -791,7 +791,7 @@ SELECT
     ) CABEZA, -- 117
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -801,7 +801,7 @@ SELECT
     ) OJOS, -- 118
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -811,7 +811,7 @@ SELECT
     ) OIDOS, -- 119
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -821,7 +821,7 @@ SELECT
     ) NARIZ, -- 120
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -831,7 +831,7 @@ SELECT
     ) BOCA, -- 121
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -841,7 +841,7 @@ SELECT
     ) ORO_FARINGE, -- 122
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -851,7 +851,7 @@ SELECT
     ) CUELLO, -- 123
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -861,7 +861,7 @@ SELECT
     ) AXILAS_MAMAS, -- 124
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -871,7 +871,7 @@ SELECT
     )TORAX, -- 125
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -881,7 +881,7 @@ SELECT
     ) ABDOMEN, -- 126
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -891,7 +891,7 @@ SELECT
     ) COLUMNA_VERTEBRAL, -- 127
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -901,7 +901,7 @@ SELECT
     ) INGRE_PERINE, -- 128
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -911,7 +911,7 @@ SELECT
     ) MIEMBROS_SUPERIORES, -- 129
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            DECODE(A.observaciones_examen_fisico, NULL, 'false', 'true')
             
         FROM
             T_EXAMEN_FISICO A
@@ -922,7 +922,7 @@ SELECT
     FUN_EXAMEN_FISICO_008 (VATENDIMENTO)  OBSERVACIONES_EXAMEN_FISICO, -- 131 --VATENDIMENTO
     (
         SELECT
-            DECODE(A.observaciones_examen_fisico, NULL, NULL, 'X')
+            A.observaciones_examen_fisico
             
         FROM
             T_EXAMEN_FISICO A
@@ -1260,8 +1260,8 @@ SELECT
     (
         SELECT
             CASE
-                WHEN PRESCRIPCION = 0 THEN 'X'
-                ELSE NULL
+                WHEN PRESCRIPCION = 0 THEN 'true'
+                ELSE 'false'
             END NO_APLICA_EXAMEN_COMPLEMEN
         FROM
             (
@@ -1284,7 +1284,7 @@ SELECT
     ) NO_APLICA_EXAMEN_COMPLEMEN, --178
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1297,7 +1297,7 @@ SELECT
     ) BIOMETRIA, -- 154
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1308,10 +1308,10 @@ SELECT
             AND B.CD_TIP_PRESC IN (376)
             AND NVL(B.SN_CANCELADO, 'N') = 'N'
     ) UROANALISIS, -- 155
-    null QUIMICA_SANGUINEA, -- 156
+    'false' QUIMICA_SANGUINEA, -- 156
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X') VALOR
+            DECODE(COUNT(*), 0, 'false', 'true') VALOR
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1324,7 +1324,7 @@ SELECT
     ) ELECTROLITOS, -- 157
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1337,7 +1337,7 @@ SELECT
     ) GASOMETRIA, --158
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1350,7 +1350,7 @@ SELECT
     ) ELECTROCARDIOGRAMA, -- 159
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1363,7 +1363,7 @@ SELECT
     ) ENDOSCOPIA, -- 160
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X') VALOR
+            DECODE(COUNT(*), 0, 'false', 'true') VALOR
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1376,7 +1376,7 @@ SELECT
     ) RX_TORAX, -- 161
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1389,7 +1389,7 @@ SELECT
     ) RX_ABDOMEN, -- 162
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1402,7 +1402,7 @@ SELECT
     ) RX_OSEA, -- 163
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1415,7 +1415,7 @@ SELECT
     ) ECOGRAFIA_ABDOMEN, -- 164
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1428,7 +1428,7 @@ SELECT
     ) ECOGRAFIA_PELVICA, -- 165
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B,
@@ -1445,7 +1445,7 @@ SELECT
     ) TOMOGRAFIA, -- 166
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B
@@ -1569,7 +1569,7 @@ SELECT
     ) RESONANCIA, -- 167
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PAR_MED
         WHERE
@@ -1578,7 +1578,7 @@ SELECT
     ) INTERCONSULTA, -- 168
     (
         SELECT
-            DECODE(COUNT(*), 0, null, 'X')
+            DECODE(COUNT(*), 0, 'false', 'true')
         FROM
             PRE_MED A,
             ITPRE_MED B

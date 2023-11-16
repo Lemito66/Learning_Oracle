@@ -32,17 +32,17 @@ if trim(vDestino1) = 'true' then vDestino := 'Alta Definitiva';
 
 elsif trim(vDestino2) = 'true' then vDestino := 'Consulta externa';
 
-elsif trim(vDestino3) = 'true' then vDestino := 'HospitalizaciÃ³n';
+elsif trim(vDestino3) = 'true' then vDestino := 'Hospitalización';
 
 elsif trim(vDestino4) = 'true' then vDestino := 'Referencia';
 
 elsif trim(vDestino5) = 'true' then vDestino := 'Referencia inversa';
 
-elsif trim(vDestino6) = 'true' then vDestino := 'DerivaciÃ³n';
+elsif trim(vDestino6) = 'true' then vDestino := 'Derivación';
 
 elsif trim(vDestino7) = 'true' then vDestino := 'Alta voluntaria';
 
-elsif trim(vDestino8) = 'true' then vDestino := 'Retiro sin autorizaciÃ³n';
+elsif trim(vDestino8) = 'true' then vDestino := 'Retiro sin autorización';
 end if;
 
 -- GRABA EL DESTINO EN EL ULTIMO REGISTRO
@@ -61,3 +61,4 @@ end;
 commit;
 
 end PRC_INSERTA_DESTINO_008;
+/

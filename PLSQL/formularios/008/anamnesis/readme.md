@@ -1,0 +1,14 @@
+<h1>Formulario 901</h1>
+
+Cambios a realizar
+<ul>
+<li>
+Se añadido dos columnas a la tabla <strong>t_datos_ginecologicos</strong>
+las columnas son <strong>fuap</strong> y <strong> fuep </strong> 
+</li>
+
+<li>
+Se domifico el siguiente el procedimiento <strong> PRC_INSERTA_T_DATOS_GINEC</strong>
+</li>
+ <li> Se cambio actividad física por condición socio económica
+</ul>

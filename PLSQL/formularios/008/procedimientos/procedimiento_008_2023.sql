@@ -1115,17 +1115,7 @@ END;
 -- Antecedentes patologicos personales y familiares
 BEGIN --No olvidarnos poner el control del firmado.Eso se realizará luego
 SELECT
-    CASE
-        WHEN (
-            SELECT
-                COUNT(*)
-            FROM
-                T_ANTECEDENTE_PERS_FAM
-            WHERE
-                CD_ATENDIMENTO = A.CD_ATENDIMENTO
-        ) = 0 THEN 'true'
-        ELSE 'false'
-    END NO_APLICA, -- 88
+    'false' NO_APLICA, -- 88
     'true' ALERGICOS, -- 89
     NVL(
         (

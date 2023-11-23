@@ -29,7 +29,7 @@ Se cambio el procedimiento <strong> prc_inserta_t_anamnesis</strong> añadiendo 
 <li>
 Se añadio las siguientes funciones
     <ul>
-    <li>fun_alergias_medicamento</li>
+    <li>fun_alergias_medicamentos</li>
     <li>fun_alergias_otras</li>
     <li>fun_medicacion_habitual</li>
     </ul>

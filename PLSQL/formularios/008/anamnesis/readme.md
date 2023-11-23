@@ -26,4 +26,13 @@ Se añadio una columna <strong>analisis</strong> tipo clob en la tabla <strong>T
 Se cambio el procedimiento <strong> prc_inserta_t_anamnesis</strong> añadiendo nuevas funcionalidades
 </li>
 
+<li>
+Se añadio las siguientes funciones
+    <ul>
+    <li>fun_alergias_medicamento</li>
+    <li>fun_alergias_otras</li>
+    <li>fun_medicacion_habitual</li>
+    </ul>
+</li>
+
 </ul>

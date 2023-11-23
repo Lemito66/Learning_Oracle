@@ -32,6 +32,7 @@ Se añadio las siguientes funciones
     <li>fun_alergias_medicamentos</li>
     <li>fun_alergias_otras</li>
     <li>fun_medicacion_habitual</li>
+    <li>fun_tipificacion_sanguinea</li>
     </ul>
 </li>
 

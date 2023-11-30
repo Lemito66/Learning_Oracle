@@ -14,7 +14,7 @@ return clob is
           h.cd_coleta_sinal_vital=i.cd_coleta_sinal_vital and
           h.cd_sinal_vital=j.cd_sinal_vital and
           h.cd_sinal_vital not in (17,18,1,59,61,60,62,63,58,4,5,6,2,47,48,49,50,77,46,
-                                   3,51,8,9,45,10,64,67,68,69,70,71,72,65,73,66) and --4
+                                   3,51,8,9,45,10,64,67,68,69,70,71,72,65,73,66, 7, 18) and --4
           h.valor is not null and
           i.cd_documento_clinico=pw.Cd_Documento_Clinico and
           h.cd_unidade_afericao=pua.cd_unidade_afericao and

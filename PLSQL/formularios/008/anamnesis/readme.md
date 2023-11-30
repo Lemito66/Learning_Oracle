@@ -37,4 +37,6 @@ Se añadio las siguientes funciones
     </ul>
 </li>
 
+<li>Actualizar la función fun_otros_signos_vitales ya que fue actualizada</li>
+
 </ul>

@@ -248,8 +248,8 @@ LEFT JOIN (select 1 AS fila35, sum(i.qt_itpre_med) AS CGRP_numero,
 				  i.cd_uni_presc=u.cd_uni_presc and
 				  u.cd_itunidade=it.cd_itunidade) datosCGRP
 ON datosPaciente.fila1 = datosCGRP.fila35				  
-LEFT JOIN (select 1 AS fila36, count(i.qt_itpre_med) AS CGRPSCLp_numero, 
-			upper(editor_custom.numero_letras_sin_decimales.Letras(count(i.qt_itpre_med),1)) AS CGRPSCLp_letras
+LEFT JOIN (select 1 AS fila36, sum(i.qt_itpre_med) AS CGRPSCLp_numero, 
+			upper(editor_custom.numero_letras_sin_decimales.Letras(sum(i.qt_itpre_med),1)) AS CGRPSCLp_letras
 			from pre_med a, pw_documento_clinico p, itpre_med i, uni_presc u, itunidade it
 			where a.cd_atendimento=$P{atencion} and
 				  a.cd_documento_clinico=p.cd_documento_clinico and
@@ -263,10 +263,10 @@ LEFT JOIN (select 1 AS fila36, count(i.qt_itpre_med) AS CGRPSCLp_numero,
 				  a.cd_pre_med=$P{prescripcion} and 
 				  i.cd_uni_presc=u.cd_uni_presc and
 				  u.cd_itunidade=it.cd_itunidade
-  			having count(i.qt_itpre_med) > 0) datosCGRPSCLp
+  			having sum(i.qt_itpre_med) > 0) datosCGRPSCLp
 ON datosPaciente.fila1 = datosCGRPSCLp.fila36				  
-LEFT JOIN (select 1 AS fila37, count(i.qt_itpre_med) AS CGRPL_numero, 
-			upper(editor_custom.numero_letras_sin_decimales.Letras(count(i.qt_itpre_med),1)) AS CGRPL_letras
+LEFT JOIN (select 1 AS fila37, sum(i.qt_itpre_med) AS CGRPL_numero, 
+			upper(editor_custom.numero_letras_sin_decimales.Letras(sum(i.qt_itpre_med),1)) AS CGRPL_letras
 			from pre_med a, pw_documento_clinico p, itpre_med i, uni_presc u, itunidade it
 			where a.cd_atendimento=$P{atencion} and
 				  a.cd_documento_clinico=p.cd_documento_clinico and
@@ -280,7 +280,7 @@ LEFT JOIN (select 1 AS fila37, count(i.qt_itpre_med) AS CGRPL_numero,
 				  a.cd_pre_med=$P{prescripcion} and  
 				  i.cd_uni_presc=u.cd_uni_presc and
 				  u.cd_itunidade=it.cd_itunidade
-  			having count(i.qt_itpre_med) > 0) datosCGRPL
+  			having sum(i.qt_itpre_med) > 0) datosCGRPL
 ON datosPaciente.fila1 = datosCGRPL.fila37				  
 LEFT JOIN (select 1 AS fila38, sum(i.qt_itpre_med) AS CGRI_numero, 
 			upper(editor_custom.numero_letras_sin_decimales.Letras(sum(i.qt_itpre_med),1)) AS CGRI_letras

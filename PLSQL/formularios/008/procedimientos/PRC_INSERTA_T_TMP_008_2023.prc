@@ -568,19 +568,32 @@ END;
 -- CONSULTA LA FECHA DE LA ATENCIÓN
 BEGIN
 SELECT
-    TO_CHAR(A.FECHA_REGISTRO, 'dd/mm/yyyy hh24:mi') HORA_ATENCION INTO V_CAMPO48
+    TO_CHAR(A.FECHA_REGISTRO, 'dd/mm/yyyy hh24:mi') HORA_ATENCION,
+    U.NM_USUARIO USUARIO_CREA -- 176 
+    INTO V_CAMPO48, V_CAMPO176
 FROM
-    T_EMERGENCIA A
+    T_EMERGENCIA A,
+    USUARIOS U,
+    pw_documento_clinico b,
+    pw_editor_clinico c
 WHERE
     A.CD_ATENDIMENTO = VATENDIMENTO
     AND A.CD_ULTIMO_REGISTRO IN (
         SELECT
-            MIN(B.CD_ULTIMO_REGISTRO)
+            MIN(Bbb.CD_ULTIMO_REGISTRO)
         FROM
-            T_EMERGENCIA B
+            T_EMERGENCIA Bbb,
+            pw_documento_clinico bb,
+            pw_editor_clinico cc
         WHERE
-            B.CD_ATENDIMENTO = VATENDIMENTO
-    );
+            Bbb.CD_ATENDIMENTO = VATENDIMENTO 
+            AND Bbb.cd_editor_registro=cc.cd_editor_registro and
+            bb.cd_documento_clinico=cc.cd_documento_clinico and
+            bb.tp_status='FECHADO'
+    ) and
+    a.cd_editor_registro=c.cd_editor_registro and
+    b.cd_documento_clinico=c.cd_documento_clinico and
+    b.tp_status='FECHADO' AND TRIM(A.USUARIO) = U.CD_USUARIO;
 
 EXCEPTION WHEN OTHERS THEN NULL;
 
@@ -659,7 +672,7 @@ SELECT
     A.MONITOREO_GINECOLOGICO OBSERVACIONES_EMBARAZO, -- 153 
     -- Fecha y hora actual
     TO_CHAR(SYSDATE, 'DD/MM/YYYY HH24:MI') FECHA_HORA_ACTUAL, -- 175  
-    U.NM_USUARIO USUARIO_CREA, -- 176 
+    --U.NM_USUARIO USUARIO_CREA, -- 176 
     U.CD_IDENTIFICADOR_PESSOA CODIGO_CREA, -- 177 
     A.FUENTE_INFORMACION, -- Es el campo 45
     A.FECHA_EVENTO FECHA_EVENTO, -- Es el campo 58.
@@ -730,7 +743,7 @@ SELECT
     V_CAMPO152,
     V_CAMPO153,
     V_CAMPO175,
-    V_CAMPO176,
+    --V_CAMPO176,
     V_CAMPO177,
     V_CAMPO45,
     V_CAMPO58,
@@ -756,18 +769,28 @@ SELECT
 
 FROM
     T_EMERGENCIA A,
-    USUARIOS U
+    USUARIOS U,
+    pw_documento_clinico b,
+    pw_editor_clinico c
 WHERE
     A.CD_ATENDIMENTO = VATENDIMENTO --79919--96372--96370--VATENDIMENTO
     AND TRIM(A.USUARIO) = U.CD_USUARIO
     AND A.CD_ULTIMO_REGISTRO IN (
         SELECT
-            MAX(B.CD_ULTIMO_REGISTRO)
+            MAX(Bbb.CD_ULTIMO_REGISTRO)
         FROM
-            T_EMERGENCIA B
+            T_EMERGENCIA Bbb,
+            pw_documento_clinico bb,
+            pw_editor_clinico cc
         WHERE
-            B.CD_ATENDIMENTO = VATENDIMENTO --79919--654--96372--96370--VATENDIMENTO
-    );
+            Bbb.CD_ATENDIMENTO = VATENDIMENTO and --79919--654--96372--96370--VATENDIMENTO
+            Bbb.cd_editor_registro=cc.cd_editor_registro and
+            bb.cd_documento_clinico=cc.cd_documento_clinico and
+            bb.tp_status='FECHADO'
+    )
+    AND a.cd_editor_registro=c.cd_editor_registro and
+      b.cd_documento_clinico=c.cd_documento_clinico and
+      b.tp_status='FECHADO';
 
 EXCEPTION WHEN OTHERS THEN NULL;
 

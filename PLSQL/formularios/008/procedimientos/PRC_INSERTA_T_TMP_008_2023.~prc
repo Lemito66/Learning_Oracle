@@ -469,7 +469,7 @@ SELECT
     O.DS_MEIO_TRANSPORTE LLEGADA_PACIENTE, -- 42
     -- 45 No hay que traer este campo
     L.DS_LOC_PROCED ENTREGA_PACIENTE, -- 46
-    M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 47
+    --M.NR_FONE TELEFONO_PACIENTE_PACIENTE, -- 47
     E.TP_SANGUINEO GRUPO_SANGUINEO_PACIENTE, -- 57
     DECODE(A.SN_CUSTODIA_POLICIAL, 'N', 'NO', 'SI') CUSTODIA_POLICIAL, -- 61      
     DECODE(A.SN_NOTIFICAR_POLICIA, 'N', 'NO', 'SI') NOTIFICACION_POLICIA -- 77   
@@ -517,7 +517,7 @@ SELECT
     V_CAMPO41,
     V_CAMPO42,
     V_CAMPO46,
-    V_CAMPO47,
+    --V_CAMPO47,
     V_CAMPO57,
     V_CAMPO61,
     V_CAMPO77
@@ -634,8 +634,8 @@ SELECT
         AND A.SANGRADO_VAGINAL IS NULL
         AND A.CONTRACCIONES IS NULL
         AND A.score_mama IS NULL
-        AND A.OBSERVACIONES_OTRO_EXAMEN IS NULL THEN 'true'
-        ELSE 'false'
+        AND A.OBSERVACIONES_OTRO_EXAMEN IS NULL THEN 'false'
+        ELSE 'true'
     END NO_APLICA, -- 133
     A.GESTAS, -- 134
     A.PARTOS, -- 135
@@ -690,7 +690,14 @@ SELECT
     fun_medidas_008 (A.CD_ATENDIMENTO, 'MOTORA') MOTORA, -- 112
     fun_medidas_008 (A.CD_ATENDIMENTO, 'DIAMETRO PUPILAR DERECHO') REACCION_DERECHA, -- 113
     fun_medidas_008 (A.CD_ATENDIMENTO, 'DIAMETRO PUPILAR IZQUIERDO') REACCION_IZQUIERDA, -- 114
-    fun_signos_vitales_008 (A.CD_ATENDIMENTO, 'LLENADO') LLENADO_CAPILAR -- 115
+    fun_signos_vitales_008 (A.CD_ATENDIMENTO, 'LLENADO') LLENADO_CAPILAR, -- 115
+    A.TELEFONO_FUENTE TELEFONO_VALORACION_INICIAL, -- 47
+    DECODE(
+        A.alcocheck,
+        'SI',
+        'true',
+        'false'
+    ) ALIENTO_ETILICO -- 87
     INTO 
     V_CAMPO49,
     V_CAMPO50,
@@ -743,7 +750,9 @@ SELECT
     V_CAMPO112,
     V_CAMPO113,
     V_CAMPO114,
-    V_CAMPO115
+    V_CAMPO115,
+    V_CAMPO47,
+    V_CAMPO87
 
 FROM
     T_EMERGENCIA A,
@@ -1061,13 +1070,7 @@ SELECT
     DECODE(A.DETALLE_EVENTO, 'PICADURA', 'true', 'false') PICADURA, -- 83
     DECODE(A.DETALLE_EVENTO, 'ENVENAMIENTO', 'true', 'false') ENVENENAMIENTO, -- 84
     DECODE(A.DETALLE_EVENTO, 'ANAFILAXIA', 'true', 'false') ANAFILAXIA, --85
-    FUN_MOTIVO_ATENCION (A.CD_ATENDIMENTO) OBSERVACIONES_3, -- 86
-    DECODE(
-        A.DETALLE_EVENTO,
-        'ALIENTO ETÍLICO',
-        'true',
-        'false'
-    ) ALIENTO_ETILICO -- 87 preguntar luego
+    FUN_MOTIVO_ATENCION (A.CD_ATENDIMENTO) OBSERVACIONES_3 -- 86
     INTO 
     V_CAMPO62,
     V_CAMPO63,
@@ -1092,8 +1095,7 @@ SELECT
     V_CAMPO83,
     V_CAMPO84,
     V_CAMPO85,
-    V_CAMPO86,
-    V_CAMPO87
+    V_CAMPO86
 FROM
     T_MOTIVO_ATENCION A
 WHERE
@@ -1113,17 +1115,7 @@ END;
 -- Antecedentes patologicos personales y familiares
 BEGIN --No olvidarnos poner el control del firmado.Eso se realizará luego
 SELECT
-    CASE
-        WHEN (
-            SELECT
-                COUNT(*)
-            FROM
-                T_ANTECEDENTE_PERS_FAM
-            WHERE
-                CD_ATENDIMENTO = A.CD_ATENDIMENTO
-        ) = 0 THEN 'true'
-        ELSE 'false'
-    END NO_APLICA, -- 88
+    'false' NO_APLICA, -- 88
     'true' ALERGICOS, -- 89
     NVL(
         (

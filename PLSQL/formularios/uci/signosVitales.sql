@@ -8,7 +8,7 @@ from
     dbamv.sinal_vital j,
     pw_documento_clinico pw
 where
-    i.cd_atendimento = 117598
+    i.cd_atendimento = 117598 -- numero de atendimento
     and h.cd_coleta_sinal_vital = i.cd_coleta_sinal_vital
     and h.cd_sinal_vital = j.cd_sinal_vital
     and h.valor is not null
@@ -50,5 +50,5 @@ where
     )
     /* Falta indice cardiaco, INDICE DE RESISTENCIA VASCULARES SISTEMICA PULMONAR, 
     DO2-V02, PRESION CAPILAR PULMONAR,ETCO2, 
-    AIRE COMPRIMIDO , OXIDO NITRICO PARTES POR MILLON, HELOX LITIO, peso ideal, PPC, acido l�ctico  */
-    -- FALTA BALANCE HIDRICO, VER ESTO LUEGO !!!!!!!!!
+    AIRE COMPRIMIDO , OXIDO NITRICO PARTES POR MILLON, HELOX LITIO, peso ideal, PPC, acido l�ctico  */
+    -- El detalle del balance hidríco se está analizando

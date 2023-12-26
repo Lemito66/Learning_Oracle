@@ -4,7 +4,7 @@ select f.ds_formula,
     from pagu_avaliacao t,
          pagu_formula f,
          pw_documento_clinico pw
-    where t.cd_atendimento=vAtendimento and
+    where t.cd_atendimento=117598 -- número de atención
           t.cd_formula=f.cd_formula and
           --f.tp_formula='M' and
           t.cd_documento_clinico=pw.cd_documento_clinico and

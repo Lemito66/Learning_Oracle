@@ -1,0 +1,1 @@
+insert into t_formularios (cd_formulario, descripcion, normativo) values ('50', 'FORMULARIO SONDAS DE ALIMENTACIÓN','0')

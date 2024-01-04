@@ -33,7 +33,7 @@ select
     trunc(sysdate) fecha_actual,
     fun_alergias_linea (a.cd_atendimento) alergias,
     p.TP_SANGUINEO grupo_sanguineo,
-    trunc(sysdate) - trunc(a.dt_atendimento) dias_de_hospitalizacion,
+    trunc(sysdate) - trunc(a.dt_atendimento) dias_de_hospitalizacion
 from
     paciente p,
     atendime a

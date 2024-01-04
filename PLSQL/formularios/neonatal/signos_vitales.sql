@@ -19,6 +19,8 @@ where
         4, -- Presion arterial por confirmar
         51, -- Frecuencia respiratoria
         17, -- Glicemia capilar
-        18 -- acido lactico
+        18, -- acido lactico
+        5,
+        6
 
     )

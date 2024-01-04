@@ -18,6 +18,7 @@ where
         59, -- Temperatura
         4, -- Presion arterial por confirmar
         51, -- Frecuencia respiratoria
-        17 -- Glicemia capilar
+        17, -- Glicemia capilar
+        18 -- acido lactico
 
     )

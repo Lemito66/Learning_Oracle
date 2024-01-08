@@ -17,7 +17,6 @@ else vResultado := 0;
 
 end if;
 
---return(vResultado);
 return vResultado;
 
 end FUN_VALIDA_FECHA_HORA;

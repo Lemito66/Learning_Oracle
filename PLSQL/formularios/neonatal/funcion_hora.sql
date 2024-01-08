@@ -1,21 +1,17 @@
 create
-or replace function FUN_VALIDA_FECHA_HORA (vFecha DATE) return number is vFechaHoy date := trunc(sysdate);
+or replace function FUN_VALIDA_FECHA_HORA (vFecha DATE) return number is vFechaHoy date := to_date(
+    to_char(trunc(sysdate), 'dd/mm/yyyy') || ' 07:00',
+    'dd/mm/yyyy hh24:mi'
+);
 
-vFechaAyer date := trunc(sysdate -1);
+vFechaAyer date := to_date(
+    to_char(trunc(sysdate -1), 'dd/mm/yyyy') || ' 07:00',
+    'dd/mm/yyyy hh24:mi'
+);
 
 vResultado number;
 
-begin vFechaHoy := to_date(
-    to_char(vFechaHoy, 'dd/mm/yyyy') || ' 07:00',
-    'dd/mm/yyyy hh24:mi'
-);
-
-vFechaAyer := to_date(
-    to_char(vFechaAyer, 'dd/mm/yyyy') || ' 07:00',
-    'dd/mm/yyyy hh24:mi'
-);
-
-if vFecha between vFechaAyer and vFechaHoy  then vResultado := 1;
+begin if vFecha between vFechaAyer and vFechaHoy  then vResultado := 1;
 
 else vResultado := 0;
 

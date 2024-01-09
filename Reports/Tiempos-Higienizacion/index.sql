@@ -19,8 +19,8 @@ WHERE TRUNC(b1.fecha)    = TRUNC(b.fecha) AND
 FROM leito a, itg_higienizacion b, mov_int c, mv_itg_admision@db_gema d, cad_admisiones@db_gema e, atendime f
 
 WHERE 
--- a.cd_leito = -- parametro leito (cama)
--- b.fecha between fecha trunc(inicio) and trunc(fecha fin)
+a.cd_leito = 65 and 
+b.fecha between trunc(sysdate -1 ) and trunc(sysdate)  and 
 
 a.cd_leito  = b.cd_leito           AND
 

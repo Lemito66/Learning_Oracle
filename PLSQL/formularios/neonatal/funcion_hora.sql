@@ -1,11 +1,11 @@
 create
 or replace function FUN_VALIDA_FECHA_HORA (vFecha DATE) return number is vFechaHoy date := to_date(
-    to_char(trunc(sysdate), 'dd/mm/yyyy') || ' 07:00',
+    to_char(trunc(vFecha), 'dd/mm/yyyy') || ' 07:00',
     'dd/mm/yyyy hh24:mi'
 );
 
 vFechaAyer date := to_date(
-    to_char(trunc(sysdate -1), 'dd/mm/yyyy') || ' 07:00',
+    to_char(trunc(vFecha -1), 'dd/mm/yyyy') || ' 07:00',
     'dd/mm/yyyy hh24:mi'
 );
 

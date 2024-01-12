@@ -9,7 +9,8 @@ from
     pw_documento_clinico pw,
     especialid e
 where
-    a.cd_atendimento = 104138
+    FUN_VALIDA_FECHA_HORA (a.dt_solicitacao, sysdate) = 1
+    and a.cd_atendimento = 104138
     and a.cd_prestador = b.cd_prestador
     and a.cd_prestador_requisitado = c.cd_prestador
     and a.ds_situacao <> 'Cancelado'

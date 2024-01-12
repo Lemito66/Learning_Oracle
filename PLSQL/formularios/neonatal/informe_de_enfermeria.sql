@@ -9,7 +9,8 @@ from
     pw_documento_clinico b,
     prestador p
 where
-    a.ds_evolucao is not null
+    FUN_VALIDA_FECHA_HORA (a.hr_pre_med, sysdate) = 1
+    and a.ds_evolucao is not null
     and tp_pre_med = 'E'
     and a.cd_documento_clinico = b.cd_documento_clinico
     and b.tp_status = 'FECHADO'

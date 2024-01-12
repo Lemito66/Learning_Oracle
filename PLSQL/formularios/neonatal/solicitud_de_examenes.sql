@@ -12,6 +12,7 @@ FROM
     ped_lab t3,
     exa_lab t4
 where
+    FUN_VALIDA_FECHA_HORA (t3.dt_pedido, sysdate) = 1 and 
     t1.cd_atendimento = 115991
     and t1.tp_status = 'T'
     and t1.cd_atendimento = t2.cd_atendimento

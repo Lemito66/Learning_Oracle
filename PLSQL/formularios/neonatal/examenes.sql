@@ -7,11 +7,11 @@ SELECT
     --t1.cd_exame,
     --t1.cd_pedido,
     --t1.nm_exame,
-   -- t1.cd_atendimento,
+    -- t1.cd_atendimento,
     REPLACE(
-        REPLACE(t1.nm_exame, 'ï¿½', '�'),
+        REPLACE(t1.nm_exame, 'ï¿½', '�'),
         'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
-        '�'
+        '�'
     ) nombre_examen,
     t1.ds_resultado resultado
     --t1.vl_normal_abso_ref_inicio,
@@ -25,7 +25,8 @@ FROM
     exa_lab t4
 where --TRUNC(T2.HR_ATENDIMENTO) = TRUNC(SYSDATE) AND
     --t1.cd_atendimento = 120088 and
-    t1.cd_atendimento = 115991
+    FUN_VALIDA_FECHA_HORA (t1.dt_gerado, sysdate) = 1
+    and t1.cd_atendimento = 115991
     and
     --t3.cd_pre_med = 699845 and
     --trunc(t1.dt_gerado) = trunc(sysdate) and
@@ -38,9 +39,9 @@ where --TRUNC(T2.HR_ATENDIMENTO) = TRUNC(SYSDATE) AND
     and t1.cd_exame = t4.cd_exa_lab
     and UPPER(
         REPLACE(
-            REPLACE(t1.nm_exame, 'ï¿½', '�'),
+            REPLACE(t1.nm_exame, 'ï¿½', '�'),
             'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
-            '�'
+            '�'
         )
     ) in (
         'PH',

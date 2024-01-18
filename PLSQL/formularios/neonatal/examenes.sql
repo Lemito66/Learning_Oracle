@@ -65,7 +65,7 @@ where --TRUNC(T2.HR_ATENDIMENTO) = TRUNC(SYSDATE) AND
         FROM
             IMV_RESULTADO_PSSD Q1
         WHERE
-            Q1.CD_ATENDIMENTO = T2.CD_ATENDIMENTO
+            to_number(Q1.CD_ATENDIMENTO) = T2.CD_ATENDIMENTO
             AND
             --TRUNC(Q1.DT_GERADO) = TRUNC(SYSDATE) AND
             Q1.NM_EXAME = T1.NM_EXAME

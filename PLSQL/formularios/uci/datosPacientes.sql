@@ -18,7 +18,7 @@
     fun_signos_vitales_imc (a.cd_atendimento) imc,
     null peso_ideal, -- por confirmar
     null superficie_corporal, -- por confirmar
-    fun_dignosticos_ingreso (a.cd_atendimento) diagnostico_ingreso,
+    fun_diagnosticos_ingreso (a.cd_atendimento) diagnostico_ingreso,
     fun_diagnostico_definitivo (a.cd_atendimento) diagnostico_definivo,
     fun_alergias_linea (a.cd_atendimento) alergias,
     p.TP_SANGUINEO grupo_sanguineo

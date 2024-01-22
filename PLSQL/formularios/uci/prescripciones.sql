@@ -38,6 +38,7 @@ from
       pw_dispositivo dis,
       itunidade itu
 where
+      FUN_VALIDA_FECHA_HORA(t1.dh_criacao, sysdate) = 1 and 
       t1.cd_atendimento = a.cd_atendimento
       and t1.cd_pre_med = t4.cd_pre_med
       and t4.cd_tip_presc = t7.cd_tip_presc

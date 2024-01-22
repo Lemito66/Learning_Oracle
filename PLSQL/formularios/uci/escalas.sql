@@ -4,7 +4,9 @@ select f.ds_formula,
     from pagu_avaliacao t,
          pagu_formula f,
          pw_documento_clinico pw
-    where t.cd_atendimento=117598 and -- número de atención
+    where 
+          FUN_VALIDA_FECHA_HORA(t.dh_avaliacao, sysdate) = 1 and 
+          t.cd_atendimento=117598 and -- número de atención
           t.cd_formula=f.cd_formula and
           --f.tp_formula='M' and
           t.cd_documento_clinico=pw.cd_documento_clinico and

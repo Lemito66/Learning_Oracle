@@ -8,6 +8,7 @@ from
     dbamv.sinal_vital j,
     pw_documento_clinico pw
 where
+    FUN_VALIDA_FECHA_HORA(i.data_coleta, sysdate) = 1 and 
     i.cd_atendimento = 117598 -- numero de atendimento
     and h.cd_coleta_sinal_vital = i.cd_coleta_sinal_vital
     and h.cd_sinal_vital = j.cd_sinal_vital

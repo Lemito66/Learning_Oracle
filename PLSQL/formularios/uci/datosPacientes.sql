@@ -12,7 +12,7 @@
     p.DS_PRIMEIRO_NOME primer_nombre,
     p.DS_SEGUNDO_NOME segundo_nombre,
     DECODE(p.TP_SEXO, 'M', 'MASCULINO', 'FEMENINO') sexo,
-    fn_idade (p.dt_nascimento, 'a "a�os", m "meses", d "d�as"') edad_paciente,
+    fn_idade (p.dt_nascimento, 'a "años", m "meses", d "días"') edad_paciente,
     FUN_SIGNOS_VITALES_U (a.cd_atendimento, 9) talla,
     FUN_SIGNOS_VITALES_U (a.cd_atendimento, 8) peso,
     fun_signos_vitales_imc (a.cd_atendimento) imc,

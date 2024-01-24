@@ -4,8 +4,9 @@ or replace procedure PCR_INSERT_PRO_MEDI_SUBCU (
     v_codigo NUMBER,
     v_fecha_registro DATE,
     v_usuario NVARCHAR2,
-    v_aplicacion NvARCHAR2,
-    v_comentario NVARCHAR2
+    v_aplicacion NUMBER,
+    v_comentario NVARCHAR2,
+    v_medicamento NVARCHAR2
 ) is maxCodigo NUMBER;
 
 begin if v_codigo is null then
@@ -31,7 +32,8 @@ insert into
         fecha_registro,
         usuario,
         aplicacion,
-        comentario
+        comentario,
+        medicamento
     )
 values
     (
@@ -40,7 +42,8 @@ values
         v_fecha_registro,
         v_usuario,
         v_aplicacion,
-        v_comentario
+        v_comentario,
+        v_medicamento
     );
 
 end;
@@ -52,7 +55,8 @@ set
     fecha_registro = v_fecha_registro,
     usuario = v_usuario,
     aplicacion = v_aplicacion,
-    comentario = v_comentario
+    comentario = v_comentario,
+    medicamento = v_medicamento
 where
     codigo = v_codigo
     and cd_atendimento = v_cd_atendimento;

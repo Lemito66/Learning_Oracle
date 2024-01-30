@@ -19,3 +19,11 @@ inner join especialid e on a.cd_especialid = e.cd_especialid
 where  a.hr_atendimento between '01/01/2024' and '27/01/2024' --and  a.cd_especialid = 60 
 and a.tp_atendimento = 'U' -- 'E'
 and  a.dt_alta is null
+
+select a.cd_atendimento ID_ATENCION, a.hr_atendimento INICIO_ATENCION, a.dt_alta FIN_ATENCION, p.tp_sexo GENERO, p.cd_paciente ID_PACIENTE
+from atendime a 
+inner join paciente p on a.cd_paciente = p.cd_paciente 
+inner join especialid e on a.cd_especialid = e.cd_especialid 
+where  a.hr_atendimento between '01/01/2023' and '01/01/2024'
+and a.tp_atendimento = 'U' -- 'E'
+order by a.hr_atendimento 

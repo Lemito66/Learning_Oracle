@@ -1,4 +1,5 @@
 SELECT
+    DISTINCT
     A.CD_PRE_MED CODIGO,
     A.CD_PRE_MED || ' - ' || A.DT_PRE_MED || ' - ' || A.NM_USUARIO INFORMACION,
     'N'

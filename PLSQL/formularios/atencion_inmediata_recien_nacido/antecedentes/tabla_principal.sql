@@ -1,42 +1,72 @@
+CREATE SEQUENCE sec_antecedente_familiares
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    MAXVALUE 999999999999
 -- Create table
-CREATE TABLE T_ANTECEDENTES_PATO_FAMILIARES (
-    CD_FORMULARIO CHAR(5),
-    CD_ATENDIMENTO NUMBER(10) NOT NULL,
-    FECHA_REGISTRO DATE,
-    USUARIO NVARCHAR2(100),
-    CD_DOCUMENTO_CLINICO NUMBER(10),
-    MADRE NVARCHAR2(100),
-    PADRE NVARCHAR2(100),
-    OTROS_FAMILIARES NVARCHAR2(100),
-    ANTECEDENTES_PRENATALES NVARCHAR2(200),
-    HORAS_HIDRORREA NVARCHAR2(50),
-    NUMERO_TACTOS NVARCHAR2(50),
-    LABOR NVARCHAR2(50),
-    CANTIDAD NVARCHAR2(50),
-    OLOR NVARCHAR2(50),
-    CARACTERISTICAS NVARCHAR2(50),
-    SUFRIMIENTO NVARCHAR2(50),
-    FECHA_NACIMIENTO NVARCHAR2(50),
-    HORA_NACIMIENTO NVARCHAR2(50),
-    FECHA_ULTIMA_MENSTRUACION NVARCHAR2(50),
-    CAPURRO NVARCHAR2(50),
-    ECO_EXTRAPOLADO NVARCHAR2(50),
-    BALLARD NVARCHAR2(50),
-    CD_REGISTRO_SECUENCIAL NUMBER(10) NOT NULL
-) TABLESPACE MVEDITOR_CUSTOM_D PCTFREE 10 INITRANS 1 MAXTRANS 255 STORAGE (
-    INITIAL 64K NEXT 1M MINEXTENTS 1 MAXEXTENTS UNLIMITED
-);
-
--- Create/Recreate primary, unique and foreign key constraints
-ALTER TABLE T_ANTECEDENTES_PATO_FAMILIARES ADD CONSTRAINT PK_ANTECEDENTES_PATO_ PRIMARY KEY (CD_ATENDIMENTO, CD_REGISTRO_SECUENCIAL) USING INDEX TABLESPACE MVEDITOR_CUSTOM_D PCTFREE 10 INITRANS 2 MAXTRANS 255 STORAGE ( INITIAL 64K NEXT 1M MINEXTENTS 1 MAXEXTENTS UNLIMITED );
-
--- Grant/Revoke object privileges
-GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALTER, INDEX, DEBUG, READ ON T_ANTECEDENTES_PATO_FAMILIARES TO ACESSOPRD;
-
-GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALTER, INDEX, DEBUG, READ ON T_ANTECEDENTES_PATO_FAMILIARES TO DBAEDITOR;
-
-GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALTER, INDEX, DEBUG, READ ON T_ANTECEDENTES_PATO_FAMILIARES TO DBAMV;
-
-GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALTER, INDEX, DEBUG, READ ON T_ANTECEDENTES_PATO_FAMILIARES TO EDITOR;
-
-GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, DEBUG, READ ON T_ANTECEDENTES_PATO_FAMILIARES TO MV2000;
+-- Create table
+create table T_ANTECEDENTES_FAMILIARES
+(
+  cd_formulario             CHAR(5),
+  cd_atendimento            NUMBER(10) not null,
+  fecha_registro            DATE,
+  usuario                   NVARCHAR2(100),
+  cd_documento_clinico      NUMBER(10),
+  madre                     NVARCHAR2(100),
+  padre                     NVARCHAR2(100),
+  otros_familiares          NVARCHAR2(100),
+  antecedentes_prenatales   NVARCHAR2(200),
+  horas_hidrorrea           NVARCHAR2(50),
+  numero_tactos             NVARCHAR2(50),
+  labor                     NVARCHAR2(50),
+  cantidad                  NVARCHAR2(50),
+  olor                      NVARCHAR2(50),
+  caracteristicas           NVARCHAR2(50),
+  sufrimiento               NVARCHAR2(50),
+  fecha_nacimiento          NVARCHAR2(50),
+  hora_nacimiento           NVARCHAR2(50),
+  fecha_ultima_menstruacion NVARCHAR2(50),
+  capurro                   NVARCHAR2(50),
+  eco_extrapolado           NVARCHAR2(50),
+  ballard                   NVARCHAR2(50),
+  cd_registro_secuencial    NUMBER default "EDITOR_CUSTOM"."SEC_ANTECEDENTE_FAMILIARES"."NEXTVAL" not null
+)
+tablespace MVEDITOR_CUSTOM_D
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate indexes 
+create index INDEX_CD_ATENDIMENTO on T_ANTECEDENTES_FAMILIARES (CD_ATENDIMENTO)
+  tablespace MVEDITOR_CUSTOM_D
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table T_ANTECEDENTES_FAMILIARES
+  add primary key (CD_REGISTRO_SECUENCIAL)
+  using index 
+  tablespace MVEDITOR_CUSTOM_D
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );

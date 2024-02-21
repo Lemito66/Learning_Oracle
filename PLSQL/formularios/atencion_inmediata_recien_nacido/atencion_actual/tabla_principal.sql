@@ -25,7 +25,8 @@ create table T_ATENCION_ACTUAL_NEO
   DEPOSICION               NVARCHAR2(10),
   ORINA          NVARCHAR2(10),
   TRATAMIENTO_INICIAL           NVARCHAR2(200),
-  cd_registro_secuencial    NUMBER default sec_atencion_actual_neo.nextval primary key
+  cd_registro_secuencial    NUMBER default sec_atencion_actual_neo.nextval primary key,
+  BOLSA                  CHAR(2),
 )
 
 

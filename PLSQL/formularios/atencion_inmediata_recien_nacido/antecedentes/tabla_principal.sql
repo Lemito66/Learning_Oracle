@@ -29,7 +29,14 @@ create table T_ANTECEDENTES_FAMILIARES
   capurro                   NVARCHAR2(50),
   eco_extrapolado           NVARCHAR2(50),
   ballard                   NVARCHAR2(50),
-  cd_registro_secuencial    NUMBER default "EDITOR_CUSTOM"."SEC_ANTECEDENTE_FAMILIARES"."NEXTVAL" not null
+  cd_registro_secuencial    NUMBER default "EDITOR_CUSTOM"."SEC_ANTECEDENTE_FAMILIARES"."NEXTVAL" not null,
+  gestas                    NVARCHAR2(5),
+  abortos                   NVARCHAR2(5),
+  partos                    NVARCHAR2(5),
+  hijos_vivos               NVARCHAR2(5),
+  hijos_muertos             NVARCHAR2(5),
+  cesareas                  NVARCHAR2(5),
+  expulsivo                NVARCHAR2(50),
 )
 tablespace MVEDITOR_CUSTOM_D
   pctfree 10

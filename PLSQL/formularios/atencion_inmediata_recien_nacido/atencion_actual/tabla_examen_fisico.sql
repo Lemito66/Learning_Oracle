@@ -4,7 +4,7 @@ create table T_EXAMEN_FISICO_NEO
   cd_atendimento              NUMBER(10),
   fecha_registro              DATE,
   tipo_examen_fisico          NVARCHAR2(50),
-  observaciones_examen_fisico NVARCHAR2(50),
+  observaciones_examen_fisico NVARCHAR2(100),
   sp_cp                       CHAR(2),
   usuario                     NVARCHAR2(100),
   inicial_egreso                 NVARCHAR2(50),

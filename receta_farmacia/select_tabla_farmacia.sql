@@ -1,0 +1,1 @@
+select * from t_receta_farmacia where cd_atendimento = 654 for update

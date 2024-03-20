@@ -8,19 +8,18 @@ BEGIN
         SELECT
             CASE
                 WHEN t.despacho = 'parcial' THEN 
-                    '|' || RPAD('-', v_MaxLineLength - 2, '-') || '|' || v_LineFeed || 
-                    '|' || RPAD('         FARMACIA', v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD(' HOSPITAL-METROPOLITANO S.A.S. ', v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD(' QUITO ' || TO_CHAR(sysdate, 'DD-MON-YYYY HH24:MI:SS'), v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD(' DISPENSADO PARCIALMENTE ', v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD('-', v_MaxLineLength - 2, '-') || '|'
+                    
+                     RPAD('                   FARMACIA', v_MaxLineLength - 2, ' ') ||  v_LineFeed || 
+                     RPAD(' HOSPITAL-METROPOLITANO S.A.S. ', v_MaxLineLength - 2, ' ') ||  v_LineFeed || 
+                     RPAD(' QUITO ' || TO_CHAR(sysdate, 'DD-MON-YYYY HH24:MI:SS'), v_MaxLineLength - 2, ' ') ||  v_LineFeed || 
+                     RPAD(' DISPENSADO PARCIALMENTE ', v_MaxLineLength - 2, ' ') ||  v_LineFeed  
+                     
                 WHEN t.despacho = 'total' THEN 
-                    '|' || RPAD('-', v_MaxLineLength - 2, '-') || '|' || v_LineFeed || 
-                    '|' || RPAD('         FARMACIA', v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD(' HOSPITAL-METROPOLITANO S.A.S. ', v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD(' QUITO ' || TO_CHAR(sysdate, 'DD-MON-YYYY HH24:MI:SS'), v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD(' DISPENSADO COMPLETAMENTE ', v_MaxLineLength - 2, ' ') || '|' || v_LineFeed || 
-                    '|' || RPAD('-', v_MaxLineLength - 2, '-') || '|'
+                     RPAD('                   FARMACIA', v_MaxLineLength - 2, ' ') ||  v_LineFeed || 
+                     RPAD(' HOSPITAL-METROPOLITANO S.A.S. ', v_MaxLineLength - 2, ' ') ||  v_LineFeed || 
+                     RPAD(' QUITO ' || TO_CHAR(sysdate, 'DD-MON-YYYY HH24:MI:SS'), v_MaxLineLength - 2, ' ') ||  v_LineFeed || 
+                     RPAD(' DISPENSADO COMPLETAMENTE ', v_MaxLineLength - 2, ' ') ||  v_LineFeed  
+                     
                 ELSE ''
             END INTO v_Resultado
         FROM

@@ -49,3 +49,22 @@ WHERE
             'DD-MM-YYYY HH24:MI'
         )
     ) = TRUNC(SYSDATE);
+
+SELECT
+    count(*),
+    
+    --terapia.numerodepedido,
+    --terapia.estado,
+    --terapia.id,
+    --JSON_VALUE (terapia.Data, '$.FECHAHOY') AS fecha_json,
+    JSON_VALUE(terapia.Data, '$.DISPOSITIVO')
+FROM
+    formularioterapiarespiratoria terapia
+WHERE
+    trunc(
+        TO_DATE(
+            JSON_VALUE (terapia.Data, '$.FECHAHOY'),
+            'DD-MM-YYYY HH24:MI'
+        )
+    ) = TRUNC(SYSDATE)
+group by JSON_VALUE(terapia.Data, '$.DISPOSITIVO')

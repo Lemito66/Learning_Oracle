@@ -70,3 +70,20 @@ select * from paciente where paciente.cd_identificador_pessoa = '0201379492'
 -- 982961
 
 select * from hmetro.PACIENTE_AUD$ where cd_paciente_old = 982961
+
+
+/* Tabla de auditoria */
+
+SELECT
+    auditoria.timestamp AS updatedAt,
+    auditoria.cd_identificador_pessoa_new AS idPatient,
+    auditoria.nm_paciente_new AS name,
+    auditoria.changed_by AS changedBy
+FROM
+    paciente
+    INNER JOIN atendime ON paciente.cd_paciente = atendime.cd_paciente
+    INNER JOIN hmetro.PACIENTE_AUD$ auditoria ON auditoria.cd_paciente_old = paciente.cd_paciente
+WHERE
+    atendime.cd_atendimento = 93217
+ORDER BY
+    updatedAt DESC

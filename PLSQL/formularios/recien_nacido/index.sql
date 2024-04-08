@@ -34,7 +34,7 @@ where
     
 select * from paciente where paciente.cd_paciente = 982961
 
-
+-- Obtener el paciente de un atendimento
 select
     paciente.nm_paciente nm_paciente,
     paciente.cd_identificador_pessoa Cd_identificador_pessoa,
@@ -44,7 +44,8 @@ select
     paciente.ds_segundo_nome ds_segundo_nome,
     paciente.cd_paciente cd_paciente,
     atendime.cd_atendimento cd_atendimento,
-    paciente.nm_social_paciente nm_social_paciente
+    paciente.nm_social_paciente nm_social_paciente,
+    paciente.dt_nascimento dt_nascimento
 from
     paciente
     inner join atendime on paciente.cd_paciente = atendime.cd_paciente
@@ -87,3 +88,17 @@ WHERE
     atendime.cd_atendimento = 93217
 ORDER BY
     updatedAt DESC
+
+
+/* Actualización tabla de auditoría */
+
+UPDATE hmetro.PACIENTE_AUD$
+SET changed_by = 'lemito66'
+WHERE cd_paciente_old = 982961
+AND timestamp = (
+    SELECT timestamp
+    FROM hmetro.PACIENTE_AUD$
+    WHERE cd_paciente_old = 982961
+    ORDER BY timestamp DESC
+    FETCH FIRST 1 ROW ONLY
+);

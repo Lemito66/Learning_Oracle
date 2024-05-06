@@ -1,6 +1,6 @@
 select * from hm_itg_contactos_prov
 
-select * from hm_itg_proveedores where id = 176
+select * from hm_itg_proveedores where id = 176, --2014, --2442
 
 select * from hm_itg_proveedores proveedor where proveedor.password is not null 
 

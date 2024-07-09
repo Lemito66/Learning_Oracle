@@ -7,7 +7,8 @@ CREATE SEQUENCE sec_informacion_medicamento
 
 CREATE TABLE t_informacion_medicamento (
   id NUMBER DEFAULT sec_informacion_medicamento.nextval PRIMARY KEY,
-  cd_atendimento integer,
+  cd_atendimento number(10),
+  cd_secuencial number(10),
   fecha_registro date,
   usuario nvarchar2(100),
   nombre_generico nvarchar2(100),

@@ -1,22 +1,23 @@
-CREATE SEQUENCE sec_informacion_medicamento
-    INCREMENT BY 1
-    START WITH 1
-    MINVALUE 1
-    MAXVALUE 999999999999
+-- Create table
+create table T_INFORMACION_MEDICAMENTO
+(
+  cd_atendimento         NUMBER(10),
+  cd_secuencial          NUMBER(10),
+  fecha_registro         DATE,
+  usuario                NVARCHAR2(100),
+  nombre_generico        NVARCHAR2(100),
+  nombre_comercial       NVARCHAR2(100),
+  lote                   NVARCHAR2(100),
+  fecha_inicio           NVARCHAR2(100),
+  fecha_fin              NVARCHAR2(100),
+  dosis_diaria           NVARCHAR2(100),
+  via_administracion     NVARCHAR2(100),
+  indicacion             NVARCHAR2(100),
+  cd_registro_secuencial NUMBER(10)
+)
 
-
-CREATE TABLE t_informacion_medicamento (
-  id NUMBER DEFAULT sec_informacion_medicamento.nextval PRIMARY KEY,
-  cd_atendimento number(10),
-  cd_secuencial number(10),
-  fecha_registro date,
-  usuario nvarchar2(100),
-  nombre_generico nvarchar2(100),
-  nombre_comercial nvarchar2(100),
-  lote nvarchar2(100),
-  fecha_inicio nvarchar2(100),
-  fecha_fin nvarchar2(100),
-  dosis_diaria nvarchar2(100),
-  via_administracion nvarchar2(100),
-  indicacion nvarchar2(100)
-);
+-- Grant/Revoke object privileges 
+grant select on T_INFORMACION_MEDICAMENTO to DBAEDITOR;
+grant select on T_INFORMACION_MEDICAMENTO to DBAMV;
+grant select on T_INFORMACION_MEDICAMENTO to EDITOR;
+grant select on T_INFORMACION_MEDICAMENTO to MV2000;

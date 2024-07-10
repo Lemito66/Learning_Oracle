@@ -13,7 +13,8 @@ create table T_INFORMACION_MEDICAMENTO
   dosis_diaria           NVARCHAR2(100),
   via_administracion     NVARCHAR2(100),
   indicacion             NVARCHAR2(100),
-  cd_registro_secuencial NUMBER(10)
+  cd_registro_secuencial NUMBER(10),
+  cd_formulario          CHAR(5)
 )
 
 -- Grant/Revoke object privileges 

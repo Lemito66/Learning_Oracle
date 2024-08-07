@@ -44,3 +44,35 @@ CREATE TABLE  (
   tratamiento varchar2 (4000),
   observacion_tratamiento varchar2 (4000)
 );
+
+
+
+select p.cd_prestador,nm_prestador,'N'
+from prestador p, esp_med em, especialid e
+where p.cd_prestador=em.cd_prestador and
+      em.cd_especialid=e.cd_especialid and
+      em.sn_especial_principal='S'
+order by nm_prestador
+
+
+select * from atendime
+
+select * from prestador
+
+
+select PRESTADOR.CD_PRESTADOR 
+from usuarios 
+inner join prestador 
+on prestador.cd_prestador = usuarios.cd_prestador
+where cd_usuario like '%ELOGRONO%'
+
+SELECT * FROM PRESTADOR WHERE CD_PRESTADOR = 2836
+
+select p.cd_prestador,nm_prestador,'N'
+from prestador p, esp_med em, especialid e
+where p.cd_prestador=em.cd_prestador and
+      em.cd_especialid=e.cd_especialid and
+      em.sn_especial_principal='S'
+order by nm_prestador
+
+-- Llamar a funcion fun extrae codigo

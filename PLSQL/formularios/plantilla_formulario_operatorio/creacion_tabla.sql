@@ -1,12 +1,12 @@
-CREATE SEQUENCE sec_plantilla_formulario_operatorio
+CREATE SEQUENCE sec_plantilla_operatorio
     INCREMENT BY 1
     START WITH 1
     MINVALUE 1
     MAXVALUE 999999999999
 
 
-CREATE TABLE  (
-  id NUMBER DEFAULT sec_plantilla_formulario_operatorio.nextval PRIMARY KEY,
+CREATE TABLE T_PLANTILLA_OPERATORIO (
+  id NUMBER DEFAULT sec_plantilla_operatorio.nextval PRIMARY KEY,
   ds_plantilla VARCHAR2(100) ,
   cd_cirujano number,
   cd_crea number,

@@ -20,3 +20,4 @@ alter table T_EMERGENCIA add funeraria VARCHAR2(10);
 alter table T_EMERGENCIA add medicina_legal VARCHAR2(10);
 alter table T_EMERGENCIA add observaciones VARCHAR2(50);
 alter table T_EMERGENCIA add dias_de_reposo VARCHAR2(30);
+alter table T_EMERGENCIA add CD_DOCUMENTO_CLINICO NUMBER(10);
